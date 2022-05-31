@@ -4,6 +4,7 @@
 // https://morelinq.github.io/
 
 using MoreLinqDemo;
+using System;
 
 Console.WriteLine("MoreLinq Demo");
 Console.WriteLine();
