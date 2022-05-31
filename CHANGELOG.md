@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.030] - 2022-05-31
+### Added
+- GuerrillaNtpDemo project
+### Changed
+- MoreLinqDemo project
+
 ## [0.1.020] - 2022-05-27
 ### Added
 - .gitattributes

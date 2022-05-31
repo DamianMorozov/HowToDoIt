@@ -3,7 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreLinqDemo", "MoreLinqDemo/MoreLinqDemo.csproj", "{B3ABF7B4-8336-4B5C-A16A-D3673C51CA36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreLinqDemo", "MoreLinqDemo\MoreLinqDemo.csproj", "{B3ABF7B4-8336-4B5C-A16A-D3673C51CA36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuerrillaNtpDemo", "GuerrillaNtpDemo\GuerrillaNtpDemo.csproj", "{2DBD543C-F395-43EB-8B3B-301C251CD1D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F0E732EB-2553-46B6-90CF-A66832B4F6E6}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +24,10 @@ Global
 		{B3ABF7B4-8336-4B5C-A16A-D3673C51CA36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3ABF7B4-8336-4B5C-A16A-D3673C51CA36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3ABF7B4-8336-4B5C-A16A-D3673C51CA36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DBD543C-F395-43EB-8B3B-301C251CD1D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DBD543C-F395-43EB-8B3B-301C251CD1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DBD543C-F395-43EB-8B3B-301C251CD1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DBD543C-F395-43EB-8B3B-301C251CD1D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
