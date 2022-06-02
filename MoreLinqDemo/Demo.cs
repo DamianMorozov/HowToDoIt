@@ -17,7 +17,7 @@ namespace MoreLinqDemo
             Console.WriteLine();
             Console.WriteLine($"{nameof(BatchDemo)}");
 
-            IEnumerable<int> numbers = Enumerable.Range(1, 100);
+            IEnumerable<int> numbers = Enumerable.Range(1, 50);
             foreach (IEnumerable<int> batch in numbers.Batch(10))
             {
                 Console.WriteLine();
@@ -27,35 +27,61 @@ namespace MoreLinqDemo
             
             sw.Stop();
             Console.WriteLine();
-            Console.WriteLine($"Elapse: {sw.Elapsed}");
+            Console.WriteLine($"{nameof(sw.Elapsed)}: {sw.Elapsed}");
         }
-        
+
         internal void InterleavedDemo()
         {
             Stopwatch sw = Stopwatch.StartNew();
             Console.WriteLine();
             Console.WriteLine($"{nameof(InterleavedDemo)}");
 
-            Random random = new();
-            IEnumerable<double> wholeNumbers = Enumerable.Range(1, 10).Select(_ => (double)random.Next(10));
-            Console.WriteLine($"{nameof(wholeNumbers)}");
-            wholeNumbers.ForEach(x => Console.Write($"{x}\t")); ;
-
-            IEnumerable<double> fractNumbers = Enumerable.Range(1, 10).Select(_ => random.NextDouble());
-            Console.WriteLine();
-            Console.WriteLine($"{nameof(fractNumbers)}");
-            fractNumbers.ForEach(x => Console.Write($"{x}\t")); ;
-
-            Console.WriteLine();
-            Console.WriteLine($"Interleave");
-            foreach (double item in wholeNumbers.Interleave(fractNumbers))
+            IEnumerable<int> numbers1 = Enumerable.Range(1, 50);
+            IEnumerable<int> numbers2 = Enumerable.Range(51, 100);
+            foreach (int item in numbers1.Interleave(numbers2))
             {
                 Console.Write($"{item}\t");
             }
 
             sw.Stop();
             Console.WriteLine();
-            Console.WriteLine($"Elapse: {sw.Elapsed}");
+            Console.WriteLine($"{nameof(sw.Elapsed)}: {sw.Elapsed}");
+        }
+        
+        internal void PermDemo()
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            Console.WriteLine();
+            Console.WriteLine($"{nameof(PermDemo)}");
+
+            char[] letters = "word1".ToCharArray();
+            foreach (IList<char>? item in letters.Permutations())
+            {
+                Console.WriteLine($"{new string(item.ToArray())}\t");
+            }
+
+            sw.Stop();
+            Console.WriteLine();
+            Console.WriteLine($"{nameof(sw.Elapsed)}: {sw.Elapsed}");
+        }
+
+        internal void SplitDemo()
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            Console.WriteLine();
+            Console.WriteLine($"{nameof(SplitDemo)}");
+
+            IEnumerable<int> numbers = Enumerable.Range(1, 20);
+            Console.WriteLine($"{numbers.Count()} items input: {string.Join("\t", numbers)}");
+            IEnumerable<IEnumerable<int>>? split = numbers.Split(5);
+            foreach (IEnumerable<int>? item in split)
+            {
+                Console.WriteLine($"{item.Count()} items output: {string.Join("\t", item)}");
+            }
+
+            sw.Stop();
+            Console.WriteLine();
+            Console.WriteLine($"{nameof(sw.Elapsed)}: {sw.Elapsed}");
         }
     }
 }

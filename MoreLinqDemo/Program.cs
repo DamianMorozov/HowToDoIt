@@ -12,6 +12,8 @@ Console.WriteLine();
 Demo demo = new();
 demo.BatchDemo();
 demo.InterleavedDemo();
+demo.PermDemo();
+demo.SplitDemo();
 
 Console.WriteLine();
 Console.WriteLine("Press any key to exit.");
