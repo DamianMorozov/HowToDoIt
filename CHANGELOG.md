@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.050] - 2022-06-07
+### Added
+- TemplateStudioWpfNavigation
+- TemplateStudioWpfNavigation.Core
+
 ## [0.1.040] - 2022-06-02
 ### Updated
 - MoreLinqDemo
