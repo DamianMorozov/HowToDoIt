@@ -5,7 +5,6 @@
 // https://github.com/robertvazan/guerrillantp
 
 using GuerrillaNtp;
-using GuerrillaNtpDemo;
 using System;
 using System.Net;
 using static GuerrillaNtpDemo.TimeHelper;
