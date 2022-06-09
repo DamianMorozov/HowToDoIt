@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.060] - 2022-06-09
+### Added
+- CopilotDemo
+
 ## [0.1.050] - 2022-06-07
 ### Added
 - TemplateStudioWpfNavigation
