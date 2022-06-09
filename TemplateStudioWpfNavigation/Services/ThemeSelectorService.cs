@@ -27,7 +27,7 @@ namespace TemplateStudioWpfNavigation.Services
             ThemeManager.Current.AddLibraryTheme(new LibraryTheme(new Uri(HcDarkTheme), MahAppsLibraryThemeProvider.DefaultInstance));
             ThemeManager.Current.AddLibraryTheme(new LibraryTheme(new Uri(HcLightTheme), MahAppsLibraryThemeProvider.DefaultInstance));
 
-            var theme = GetCurrentTheme();
+            AppTheme theme = GetCurrentTheme();
             SetTheme(theme);
         }
 

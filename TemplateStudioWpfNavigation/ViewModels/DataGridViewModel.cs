@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-
 using TemplateStudioWpfNavigation.Contracts.ViewModels;
 using TemplateStudioWpfNavigation.Core.Contracts.Services;
 using TemplateStudioWpfNavigation.Core.Models;
@@ -14,7 +11,7 @@ namespace TemplateStudioWpfNavigation.ViewModels
     {
         private readonly ISampleDataService _sampleDataService;
 
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<SampleOrder> Source { get; } = new();
 
         public DataGridViewModel(ISampleDataService sampleDataService)
         {
@@ -28,7 +25,7 @@ namespace TemplateStudioWpfNavigation.ViewModels
             // Replace this with your actual data
             var data = await _sampleDataService.GetGridDataAsync();
 
-            foreach (var item in data)
+            foreach (SampleOrder item in data)
             {
                 Source.Add(item);
             }

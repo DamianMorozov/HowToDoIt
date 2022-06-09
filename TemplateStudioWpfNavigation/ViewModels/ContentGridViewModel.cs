@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -20,7 +19,7 @@ namespace TemplateStudioWpfNavigation.ViewModels
 
         public ICommand NavigateToDetailCommand => _navigateToDetailCommand ?? (_navigateToDetailCommand = new RelayCommand<SampleOrder>(NavigateToDetail));
 
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<SampleOrder> Source { get; } = new();
 
         public ContentGridViewModel(ISampleDataService sampleDataService, INavigationService navigationService)
         {
@@ -34,7 +33,7 @@ namespace TemplateStudioWpfNavigation.ViewModels
 
             // Replace this with your actual data
             var data = await _sampleDataService.GetContentGridDataAsync();
-            foreach (var item in data)
+            foreach (SampleOrder item in data)
             {
                 Source.Add(item);
             }

@@ -59,7 +59,7 @@ namespace TemplateStudioWpfNavigation.ViewModels
 
         private void OnSetTheme(string themeName)
         {
-            var theme = (AppTheme)Enum.Parse(typeof(AppTheme), themeName);
+            AppTheme theme = (AppTheme)Enum.Parse(typeof(AppTheme), themeName);
             _themeSelectorService.SetTheme(theme);
         }
 

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -48,7 +46,7 @@ namespace TemplateStudioWpfNavigation
             {
                 Current.Dispatcher.Invoke(async () =>
                 {
-                    var config = GetService<IConfiguration>();
+                    IConfiguration config = GetService<IConfiguration>();
                     config[ToastNotificationActivationHandler.ActivationArguments] = toastArgs.Argument;
                     await _host.StartAsync();
                 });

@@ -27,7 +27,7 @@ namespace TemplateStudioWpfNavigation.Services
 
         public void OpenInNewWindow(string key, object parameter = null)
         {
-            var window = GetWindow(key);
+            Window window = GetWindow(key);
             if (window != null)
             {
                 window.Activate();
@@ -39,14 +39,14 @@ namespace TemplateStudioWpfNavigation.Services
                     Title = "TemplateStudioWpfNavigation",
                     Style = Application.Current.FindResource("CustomMetroWindow") as Style
                 };
-                var frame = new Frame()
+                Frame frame = new()
                 {
                     Focusable = false,
                     NavigationUIVisibility = NavigationUIVisibility.Hidden
                 };
 
                 window.Content = frame;
-                var page = _pageService.GetPage(key);
+                Page page = _pageService.GetPage(key);
                 window.Closed += OnWindowClosed;
                 window.Show();
                 frame.Navigated += OnNavigated;
@@ -56,11 +56,11 @@ namespace TemplateStudioWpfNavigation.Services
 
         public bool? OpenInDialog(string key, object parameter = null)
         {
-            var shellWindow = _serviceProvider.GetService(typeof(IShellDialogWindow)) as Window;
-            var frame = ((IShellDialogWindow)shellWindow).GetDialogFrame();
+            Window shellWindow = _serviceProvider.GetService(typeof(IShellDialogWindow)) as Window;
+            Frame frame = ((IShellDialogWindow)shellWindow).GetDialogFrame();
             frame.Navigated += OnNavigated;
             shellWindow.Closed += OnWindowClosed;
-            var page = _pageService.GetPage(key);
+            Page page = _pageService.GetPage(key);
             var navigated = frame.Navigate(page, parameter);
             return shellWindow.ShowDialog();
         }

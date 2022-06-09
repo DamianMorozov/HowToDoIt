@@ -19,7 +19,7 @@ namespace TemplateStudioWpfNavigation.Behaviors
         protected override void OnAttached()
         {
             base.OnAttached();
-            var listView = AssociatedObject as ListView;
+            ListView listView = AssociatedObject as ListView;
             listView.PreviewMouseLeftButtonDown += OnPreviewMouseLeftButtonDown;
             listView.KeyDown += OnKeyDown;
         }
@@ -27,7 +27,7 @@ namespace TemplateStudioWpfNavigation.Behaviors
         protected override void OnDetaching()
         {
             base.OnDetaching();
-            var listView = AssociatedObject as ListView;
+            ListView listView = AssociatedObject as ListView;
             listView.PreviewMouseLeftButtonDown -= OnPreviewMouseLeftButtonDown;
             listView.KeyDown -= OnKeyDown;
         }

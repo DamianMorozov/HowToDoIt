@@ -1,6 +1,4 @@
-﻿using System;
-
-using TemplateStudioWpfNavigation.Models;
+﻿using TemplateStudioWpfNavigation.Models;
 
 namespace TemplateStudioWpfNavigation.Contracts.Services
 {

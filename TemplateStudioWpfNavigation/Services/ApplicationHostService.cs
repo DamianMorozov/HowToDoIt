@@ -68,7 +68,7 @@ namespace TemplateStudioWpfNavigation.Services
 
         private async Task HandleActivationAsync()
         {
-            var activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle());
+            IActivationHandler activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle());
 
             if (activationHandler != null)
             {

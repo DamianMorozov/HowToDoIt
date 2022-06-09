@@ -13,7 +13,7 @@ namespace TemplateStudioWpfNavigation.Services
 {
     public class PageService : IPageService
     {
-        private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
+        private readonly Dictionary<string, Type> _pages = new();
         private readonly IServiceProvider _serviceProvider;
 
         public PageService(IServiceProvider serviceProvider)
@@ -44,7 +44,7 @@ namespace TemplateStudioWpfNavigation.Services
 
         public Page GetPage(string key)
         {
-            var pageType = GetPageType(key);
+            Type pageType = GetPageType(key);
             return _serviceProvider.GetService(pageType) as Page;
         }
 
@@ -60,7 +60,7 @@ namespace TemplateStudioWpfNavigation.Services
                     throw new ArgumentException($"The key {key} is already configured in PageService");
                 }
 
-                var type = typeof(V);
+                Type type = typeof(V);
                 if (_pages.Any(p => p.Value == type))
                 {
                     throw new ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == type).Key}");

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-
 using TemplateStudioWpfNavigation.Contracts.ViewModels;
 using TemplateStudioWpfNavigation.Core.Contracts.Services;
 using TemplateStudioWpfNavigation.Core.Models;
@@ -22,7 +19,7 @@ namespace TemplateStudioWpfNavigation.ViewModels
             set { SetProperty(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new();
 
         public ListDetailsViewModel(ISampleDataService sampleDataService)
         {
@@ -35,7 +32,7 @@ namespace TemplateStudioWpfNavigation.ViewModels
 
             var data = await _sampleDataService.GetListDetailsDataAsync();
 
-            foreach (var item in data)
+            foreach (SampleOrder item in data)
             {
                 SampleItems.Add(item);
             }

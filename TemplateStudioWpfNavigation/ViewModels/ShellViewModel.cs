@@ -37,7 +37,7 @@ namespace TemplateStudioWpfNavigation.ViewModels
         }
 
         // TODO: Change the icons and titles for all HamburgerMenuItems here.
-        public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
+        public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new()
         {
             new HamburgerMenuGlyphItem() { Label = Resources.ShellMainPage, Glyph = "\uE8A5", TargetPageType = typeof(MainViewModel) },
             new HamburgerMenuGlyphItem() { Label = Resources.ShellWebViewPage, Glyph = "\uE8A5", TargetPageType = typeof(WebViewViewModel) },
@@ -46,7 +46,7 @@ namespace TemplateStudioWpfNavigation.ViewModels
             new HamburgerMenuGlyphItem() { Label = Resources.ShellDataGridPage, Glyph = "\uE8A5", TargetPageType = typeof(DataGridViewModel) },
         };
 
-        public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
+        public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new()
         {
             new HamburgerMenuGlyphItem() { Label = Resources.ShellSettingsPage, Glyph = "\uE713", TargetPageType = typeof(SettingsViewModel) }
         };
@@ -98,7 +98,7 @@ namespace TemplateStudioWpfNavigation.ViewModels
 
         private void OnNavigated(object sender, string viewModelName)
         {
-            var item = MenuItems
+            HamburgerMenuItem item = MenuItems
                         .OfType<HamburgerMenuItem>()
                         .FirstOrDefault(i => viewModelName == i.TargetPageType?.FullName);
             if (item != null)

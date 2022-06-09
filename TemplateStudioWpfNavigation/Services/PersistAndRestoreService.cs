@@ -36,7 +36,7 @@ namespace TemplateStudioWpfNavigation.Services
         {
             var folderPath = Path.Combine(_localAppData, _appConfig.ConfigurationsFolder);
             var fileName = _appConfig.AppPropertiesFileName;
-            var properties = _fileService.Read<IDictionary>(folderPath, fileName);
+            IDictionary properties = _fileService.Read<IDictionary>(folderPath, fileName);
             if (properties != null)
             {
                 foreach (DictionaryEntry property in properties)

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-
 using TemplateStudioWpfNavigation.Contracts.ViewModels;
 using TemplateStudioWpfNavigation.Core.Contracts.Services;
 using TemplateStudioWpfNavigation.Core.Models;

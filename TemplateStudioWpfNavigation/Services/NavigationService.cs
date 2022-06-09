@@ -52,12 +52,12 @@ namespace TemplateStudioWpfNavigation.Services
 
         public bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false)
         {
-            var pageType = _pageService.GetPageType(pageKey);
+            Type pageType = _pageService.GetPageType(pageKey);
 
             if (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
             {
                 _frame.Tag = clearNavigation;
-                var page = _pageService.GetPage(pageKey);
+                Page page = _pageService.GetPage(pageKey);
                 var navigated = _frame.Navigate(page, parameter);
                 if (navigated)
                 {
