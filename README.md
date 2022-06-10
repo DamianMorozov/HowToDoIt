@@ -7,6 +7,9 @@ Examples of the use of different technologies
 ## CopilotDemo
 ![](Assets/CopilotDemo.png?raw=true)
 
+## DotNetDemo
+![](Assets/DotNetDemo.png?raw=true)
+
 ## GuerrillaNtpDemo
 ![](Assets/GuerrillaNtpDemo.png?raw=true)
 

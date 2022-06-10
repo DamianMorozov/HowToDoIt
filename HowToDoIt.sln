@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateStudioWpfNavigation
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateStudioWpfNavigation.Core", "TemplateStudioWpfNavigation.Core\TemplateStudioWpfNavigation.Core.csproj", "{00CA4F9D-4851-4C92-B9F9-BC65F4F8F039}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopilotDemo", "CopilotDemo\CopilotDemo.csproj", "{FB89591A-82BA-4467-9309-8C390C40AD00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CopilotDemo", "CopilotDemo\CopilotDemo.csproj", "{FB89591A-82BA-4467-9309-8C390C40AD00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetDemo", "DotNetDemo\DotNetDemo.csproj", "{001B76E4-A5EE-4F5D-9173-C0E159AA4FC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,10 @@ Global
 		{FB89591A-82BA-4467-9309-8C390C40AD00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB89591A-82BA-4467-9309-8C390C40AD00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB89591A-82BA-4467-9309-8C390C40AD00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{001B76E4-A5EE-4F5D-9173-C0E159AA4FC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{001B76E4-A5EE-4F5D-9173-C0E159AA4FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{001B76E4-A5EE-4F5D-9173-C0E159AA4FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{001B76E4-A5EE-4F5D-9173-C0E159AA4FC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
