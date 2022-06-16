@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.090] - 2022-06-16
+### Added
+- NetMauiDemo
+
 ## [0.1.080] - 2022-06-14
 ### Added
 - LibreHardwareMonitorDemo

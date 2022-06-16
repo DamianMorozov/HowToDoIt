@@ -16,6 +16,9 @@ Examples of the use of different technologies
 ## MoreLinqDemo
 ![](Assets/MoreLinqDemo.png?raw=true)
 
+## NetMauiDemo
+![](Assets/NetMauiDemo.png?raw=true)
+
 ## TemplateStudioWpfNavigation
 ![](Assets/TemplateStudioWpfNavigation.png?raw=true)
 

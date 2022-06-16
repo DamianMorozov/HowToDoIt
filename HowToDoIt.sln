@@ -22,7 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CopilotDemo", "CopilotDemo\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetDemo", "DotNetDemo\DotNetDemo.csproj", "{001B76E4-A5EE-4F5D-9173-C0E159AA4FC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibreHardwareMonitorDemo", "LibreHardwareMonitorDemo\LibreHardwareMonitorDemo.csproj", "{3C906E4B-191E-47EB-A4EE-1E6B7970FDC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibreHardwareMonitorDemo", "LibreHardwareMonitorDemo\LibreHardwareMonitorDemo.csproj", "{3C906E4B-191E-47EB-A4EE-1E6B7970FDC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMauiDemo", "NetMauiDemo\NetMauiDemo.csproj", "{B071ACEB-4758-4FFC-A9A6-32685F92A8F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,12 @@ Global
 		{3C906E4B-191E-47EB-A4EE-1E6B7970FDC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C906E4B-191E-47EB-A4EE-1E6B7970FDC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C906E4B-191E-47EB-A4EE-1E6B7970FDC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B071ACEB-4758-4FFC-A9A6-32685F92A8F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B071ACEB-4758-4FFC-A9A6-32685F92A8F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B071ACEB-4758-4FFC-A9A6-32685F92A8F3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B071ACEB-4758-4FFC-A9A6-32685F92A8F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B071ACEB-4758-4FFC-A9A6-32685F92A8F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B071ACEB-4758-4FFC-A9A6-32685F92A8F3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
