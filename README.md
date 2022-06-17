@@ -22,5 +22,8 @@ Examples of the use of different technologies
 ## TemplateStudioWpfNavigation
 ![](Assets/TemplateStudioWpfNavigation.png?raw=true)
 
-# Support
+## Status
+![Alt](https://repobeats.axiom.co/api/embed/78bcdf5730986b6c8d3a9f797a2b2f38d23693d3.svg "Repobeats analytics image")
+
+## Support
 Please click the `star` button if this tool was helpful to you.
