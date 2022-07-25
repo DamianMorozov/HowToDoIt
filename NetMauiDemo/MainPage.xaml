@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NetMauiDemo.MainPage">
-			 
+             xmlns:models="clr-namespace:NetMauiDemo.Models"
+             x:Class="NetMauiDemo.MainPage"
+             >
+    
+    <ContentPage.Resources>
+        <models:ObservableUser x:Key="ObservableUser" />
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout 
             Spacing="25" 
@@ -24,7 +30,7 @@
             <Label 
                 Text="Welcome to .NET Multi-platform App UI"
                 SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                SemanticProperties.Description="Welcome to dot net Multi platform App UI"
                 FontSize="18"
                 HorizontalOptions="CenterAndExpand" />
 
@@ -35,7 +41,16 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="FillAndExpand"
                 />
-
+            
+            <Label 
+                x:Name="fieldUser" 
+                Text="{Binding Source=ObservableUser, Path=User, Mode=TwoWay}"
+                />
+            <Button 
+                x:Name="buttonSetNewUser"
+                Text="Set new user"
+                Clicked="buttonSetNewUser_Clicked"
+                />
         </VerticalStackLayout>
     </ScrollView>
  

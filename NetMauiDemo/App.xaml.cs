@@ -1,30 +1,29 @@
 ﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-namespace NetMauiDemo
+namespace NetMauiDemo;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    public App()
     {
-        public App()
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-            MainPage = new AppShell();
-        }
+        MainPage = new AppShell();
+    }
 
-        protected override void OnStart()
-        {
-            base.OnStart();
-        }
+    protected override void OnStart()
+    {
+        base.OnStart();
+    }
 
-        protected override void OnResume()
-        {
-            base.OnResume();
-        }
+    protected override void OnResume()
+    {
+        base.OnResume();
+    }
 
-        protected override void OnSleep()
-        {
-            base.OnSleep();
-        }
+    protected override void OnSleep()
+    {
+        base.OnSleep();
     }
 }
