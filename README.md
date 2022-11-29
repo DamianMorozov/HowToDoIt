@@ -16,10 +16,10 @@ Examples of the use of different technologies
 ## MoreLinqDemo
 ![](Assets/MoreLinqDemo.png?raw=true)
 
-## [NetMlDemo](NetMlDemo/NetMlDemo.md)
+## [NetMauiDemo]
 ![](Assets/NetMauiDemo.png?raw=true)
 
-## NetMlDemo
+## [NetMlDemo](NetMlDemo/NetMlDemo.md)
 ![](Assets/NetMlDemo.png?raw=true)
 
 ## TemplateStudioWpfNavigation
