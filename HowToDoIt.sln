@@ -26,7 +26,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibreHardwareMonitorDemo", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMauiDemo", "NetMauiDemo\NetMauiDemo.csproj", "{B071ACEB-4758-4FFC-A9A6-32685F92A8F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo", "BlazorDemo\BlazorDemo.csproj", "{C381D8D1-71E3-4C1A-9FB7-8D2D6E03C4E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo", "BlazorDemo\BlazorDemo.csproj", "{C381D8D1-71E3-4C1A-9FB7-8D2D6E03C4E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMlDemo", "NetMlDemo\NetMlDemo.csproj", "{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +74,10 @@ Global
 		{C381D8D1-71E3-4C1A-9FB7-8D2D6E03C4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C381D8D1-71E3-4C1A-9FB7-8D2D6E03C4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C381D8D1-71E3-4C1A-9FB7-8D2D6E03C4E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
