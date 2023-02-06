@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>TemplateStudioWpfNavigation.Core</RootNamespace>
-    <Version>0.1.120.0</Version>
+    <Version>0.1.130.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 </Project>

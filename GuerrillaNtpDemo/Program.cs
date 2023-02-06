@@ -12,9 +12,8 @@ using static GuerrillaNtpDemo.TimeHelper;
 Console.WriteLine("GuerrillaNtp demo.");
 Console.Write("Input NTP server: ");
 string? str = Console.ReadLine();
-if (str is string ntp && !string.IsNullOrEmpty(ntp))
+if (str is { } ntp && !string.IsNullOrEmpty(ntp))
 {
-    TimeSpan offset;
     IPAddress ip = Dns.GetHostAddresses(ntp)[0];
     Console.WriteLine($"{nameof(ip)}: {ip}");
     Console.WriteLine("1 - just view");
@@ -22,13 +21,13 @@ if (str is string ntp && !string.IsNullOrEmpty(ntp))
     Console.Write("Select mode: ");
     str = Console.ReadLine();
 
-    using NtpClient ntpClient = new(ip);
-    offset = ntpClient.GetCorrectionOffset();
-    Console.WriteLine($"{nameof(offset)}: {offset}");
+    NtpClient ntpClient = new(ip);
+    NtpClock ntpClock = ntpClient.Query();
+    Console.WriteLine($"{nameof(ntpClock.CorrectionOffset)}: {ntpClock.CorrectionOffset}");
     DateTime localTime = DateTime.Now;
     DateTime localUtcTime = DateTime.UtcNow;
-    DateTime accurateTime = localTime + offset;
-    DateTime accurateUtcTime = localUtcTime + offset;
+    DateTime accurateTime = localTime + ntpClock.CorrectionOffset;
+    DateTime accurateUtcTime = localUtcTime + ntpClock.CorrectionOffset;
 
     switch (str)
     {

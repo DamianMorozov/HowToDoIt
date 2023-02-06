@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.130] - 2023-02-06
+### Changed
+- NuGet packages
+- .NET 7
+
 ## [0.1.120] - 2022-11-29
 ### Added
 - NetMlDemo
