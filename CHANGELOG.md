@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.200] - 2023-06-20
+### Changed
+- NuGet packages
+### Added
+- WTelegramClientWinFormsDemo
+
 ## [0.1.130] - 2023-02-06
 ### Changed
 - NuGet packages
