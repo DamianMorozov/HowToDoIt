@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - NuGet packages
 ### Added
 - WTelegramClientWinFormsDemo
+- GitHub Actions
 
 ## [0.1.130] - 2023-02-06
 ### Changed
