@@ -8,6 +8,6 @@
 		<Version>0.1.200.0</Version>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="GuerrillaNtp" Version="3.0.0" />
+		<PackageReference Include="GuerrillaNtp" Version="3.1.0" />
 	</ItemGroup>
 </Project>

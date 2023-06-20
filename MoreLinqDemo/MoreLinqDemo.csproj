@@ -8,6 +8,6 @@
 		<Version>0.1.200.0</Version>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="morelinq" Version="3.3.2" />
+		<PackageReference Include="morelinq" Version="3.4.2" />
 	</ItemGroup>
 </Project>
