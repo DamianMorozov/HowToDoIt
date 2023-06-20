@@ -41,13 +41,16 @@ public partial class MainForm : Form
 		if (what != null)
 		{
 			listBox.Items.Add($"A {what} is required...");
-			labelCode.Text = what + ':';
+			labelCode.Text = what;
 			textBoxCode.Text = "";
-			labelCode.Visible = textBoxCode.Visible = buttonSendCode.Visible = true;
+			labelCode.Visible = textBoxCode.Visible = buttonSendCode.Enabled = true;
 			textBoxCode.Focus();
 			return;
 		}
-		panelActions.Visible = true;
+		buttonGetChats.Enabled = true;
+		buttonGetDialogs.Enabled = true;
+		buttonGetMembers.Enabled = true;
+		buttonSendMsg.Enabled = true;
 		listBox.Items.Add($"We are now connected as {_client.User}");
 	}
 
@@ -56,7 +59,7 @@ public partial class MainForm : Form
 		try
 		{
 			labelException.Text = string.Empty;
-			labelCode.Visible = textBoxCode.Visible = buttonSendCode.Visible = false;
+			labelCode.Visible = textBoxCode.Visible = buttonSendCode.Enabled = false;
 			await DoLogin(textBoxCode.Text);
 		}
 		catch (Exception ex)
