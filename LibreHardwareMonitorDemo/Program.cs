@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System.Xml.Linq;
+
 using LibreHardwareMonitor.Hardware;
 using LibreHardwareMonitorDemo;
 
