@@ -1,28 +1,23 @@
-﻿using System.Windows.Controls;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-using MahApps.Metro.Controls;
+namespace TemplateStudioWpfNavigation.Views;
 
-using TemplateStudioWpfNavigation.Contracts.Views;
-using TemplateStudioWpfNavigation.ViewModels;
-
-namespace TemplateStudioWpfNavigation.Views
+public partial class ShellDialogWindow : MetroWindow, IShellDialogWindow
 {
-    public partial class ShellDialogWindow : MetroWindow, IShellDialogWindow
-    {
-        public ShellDialogWindow(ShellDialogViewModel viewModel)
-        {
-            InitializeComponent();
-            viewModel.SetResult = OnSetResult;
-            DataContext = viewModel;
-        }
+	public ShellDialogWindow(ShellDialogViewModel viewModel)
+	{
+		InitializeComponent();
+		viewModel.SetResult = OnSetResult;
+		DataContext = viewModel;
+	}
 
-        public Frame GetDialogFrame()
-            => dialogFrame;
+	public Frame GetDialogFrame()
+		=> dialogFrame;
 
-        private void OnSetResult(bool? result)
-        {
-            DialogResult = result;
-            Close();
-        }
-    }
+	private void OnSetResult(bool? result)
+	{
+		DialogResult = result;
+		Close();
+	}
 }

@@ -1,38 +1,33 @@
-﻿using System.Collections.ObjectModel;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using TemplateStudioWpfNavigation.Contracts.ViewModels;
-using TemplateStudioWpfNavigation.Core.Contracts.Services;
-using TemplateStudioWpfNavigation.Core.Models;
+namespace TemplateStudioWpfNavigation.ViewModels;
 
-namespace TemplateStudioWpfNavigation.ViewModels
+public class DataGridViewModel : ObservableObject, INavigationAware
 {
-    public class DataGridViewModel : ObservableObject, INavigationAware
-    {
-        private readonly ISampleDataService _sampleDataService;
+	private readonly ISampleDataService _sampleDataService;
 
-        public ObservableCollection<SampleOrder> Source { get; } = new();
+	public ObservableCollection<SampleOrder> Source { get; } = new();
 
-        public DataGridViewModel(ISampleDataService sampleDataService)
-        {
-            _sampleDataService = sampleDataService;
-        }
+	public DataGridViewModel(ISampleDataService sampleDataService)
+	{
+		_sampleDataService = sampleDataService;
+	}
 
-        public async void OnNavigatedTo(object parameter)
-        {
-            Source.Clear();
+	public async void OnNavigatedTo(object parameter)
+	{
+		Source.Clear();
 
-            // Replace this with your actual data
-            var data = await _sampleDataService.GetGridDataAsync();
+		// Replace this with your actual data
+		var data = await _sampleDataService.GetGridDataAsync();
 
-            foreach (SampleOrder item in data)
-            {
-                Source.Add(item);
-            }
-        }
+		foreach (SampleOrder item in data)
+		{
+			Source.Add(item);
+		}
+	}
 
-        public void OnNavigatedFrom()
-        {
-        }
-    }
+	public void OnNavigatedFrom()
+	{
+	}
 }

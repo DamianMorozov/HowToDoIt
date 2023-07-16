@@ -1,47 +1,41 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using TemplateStudioWpfNavigation.Contracts.ViewModels;
-using TemplateStudioWpfNavigation.Core.Contracts.Services;
-using TemplateStudioWpfNavigation.Core.Models;
+namespace TemplateStudioWpfNavigation.ViewModels;
 
-namespace TemplateStudioWpfNavigation.ViewModels
+public class ListDetailsViewModel : ObservableObject, INavigationAware
 {
-    public class ListDetailsViewModel : ObservableObject, INavigationAware
-    {
-        private readonly ISampleDataService _sampleDataService;
-        private SampleOrder _selected;
+	private readonly ISampleDataService _sampleDataService;
+	private SampleOrder _selected;
 
-        public SampleOrder Selected
-        {
-            get { return _selected; }
-            set { SetProperty(ref _selected, value); }
-        }
+	public SampleOrder Selected
+	{
+		get { return _selected; }
+		set { SetProperty(ref _selected, value); }
+	}
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new();
+	public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new();
 
-        public ListDetailsViewModel(ISampleDataService sampleDataService)
-        {
-            _sampleDataService = sampleDataService;
-        }
+	public ListDetailsViewModel(ISampleDataService sampleDataService)
+	{
+		_sampleDataService = sampleDataService;
+	}
 
-        public async void OnNavigatedTo(object parameter)
-        {
-            SampleItems.Clear();
+	public async void OnNavigatedTo(object parameter)
+	{
+		SampleItems.Clear();
 
-            var data = await _sampleDataService.GetListDetailsDataAsync();
+		var data = await _sampleDataService.GetListDetailsDataAsync();
 
-            foreach (SampleOrder item in data)
-            {
-                SampleItems.Add(item);
-            }
+		foreach (SampleOrder item in data)
+		{
+			SampleItems.Add(item);
+		}
 
-            Selected = SampleItems.First();
-        }
+		Selected = SampleItems.First();
+	}
 
-        public void OnNavigatedFrom()
-        {
-        }
-    }
+	public void OnNavigatedFrom()
+	{
+	}
 }

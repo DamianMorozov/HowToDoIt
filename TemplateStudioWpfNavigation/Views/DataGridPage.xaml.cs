@@ -1,15 +1,13 @@
-﻿using System.Windows.Controls;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-using TemplateStudioWpfNavigation.ViewModels;
+namespace TemplateStudioWpfNavigation.Views;
 
-namespace TemplateStudioWpfNavigation.Views
+public partial class DataGridPage : Page
 {
-    public partial class DataGridPage : Page
-    {
-        public DataGridPage(DataGridViewModel viewModel)
-        {
-            InitializeComponent();
-            DataContext = viewModel;
-        }
-    }
+	public DataGridPage(DataGridViewModel viewModel)
+	{
+		InitializeComponent();
+		DataContext = viewModel;
+	}
 }

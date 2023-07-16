@@ -1,15 +1,13 @@
-﻿using System.Windows.Controls;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-using TemplateStudioWpfNavigation.ViewModels;
+namespace TemplateStudioWpfNavigation.Views;
 
-namespace TemplateStudioWpfNavigation.Views
+public partial class SettingsPage : Page
 {
-    public partial class SettingsPage : Page
-    {
-        public SettingsPage(SettingsViewModel viewModel)
-        {
-            InitializeComponent();
-            DataContext = viewModel;
-        }
-    }
+	public SettingsPage(SettingsViewModel viewModel)
+	{
+		InitializeComponent();
+		DataContext = viewModel;
+	}
 }

@@ -1,11 +1,11 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-namespace TemplateStudioWpfNavigation.ViewModels
+namespace TemplateStudioWpfNavigation.ViewModels;
+
+public class MainViewModel : ObservableObject
 {
-    public class MainViewModel : ObservableObject
-    {
-        public MainViewModel()
-        {
-        }
-    }
+	public MainViewModel()
+	{
+	}
 }

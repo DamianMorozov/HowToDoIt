@@ -1,9 +1,11 @@
-﻿namespace TemplateStudioWpfNavigation.Contracts.ViewModels
-{
-    public interface INavigationAware
-    {
-        void OnNavigatedTo(object parameter);
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-        void OnNavigatedFrom();
-    }
+namespace TemplateStudioWpfNavigation.Contracts.ViewModels;
+
+public interface INavigationAware
+{
+	void OnNavigatedTo(object parameter);
+
+	void OnNavigatedFrom();
 }

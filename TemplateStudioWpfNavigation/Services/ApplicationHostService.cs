@@ -1,91 +1,82 @@
-﻿using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using TemplateStudioWpfNavigation.Contracts.Activation;
-using TemplateStudioWpfNavigation.Contracts.Services;
-using TemplateStudioWpfNavigation.Contracts.Views;
-using TemplateStudioWpfNavigation.ViewModels;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-namespace TemplateStudioWpfNavigation.Services
+namespace TemplateStudioWpfNavigation.Services;
+
+public class ApplicationHostService : IHostedService
 {
-    public class ApplicationHostService : IHostedService
-    {
-        private readonly IServiceProvider _serviceProvider;
-        private readonly INavigationService _navigationService;
-        private readonly IPersistAndRestoreService _persistAndRestoreService;
-        private readonly IThemeSelectorService _themeSelectorService;
-        private readonly IEnumerable<IActivationHandler> _activationHandlers;
-        private IShellWindow _shellWindow;
-        private bool _isInitialized;
+	private readonly IServiceProvider _serviceProvider;
+	private readonly INavigationService _navigationService;
+	private readonly IPersistAndRestoreService _persistAndRestoreService;
+	private readonly IThemeSelectorService _themeSelectorService;
+	private readonly IEnumerable<IActivationHandler> _activationHandlers;
+	private IShellWindow _shellWindow;
+	private bool _isInitialized;
 
-        public ApplicationHostService(IServiceProvider serviceProvider, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService, IThemeSelectorService themeSelectorService, IPersistAndRestoreService persistAndRestoreService)
-        {
-            _serviceProvider = serviceProvider;
-            _activationHandlers = activationHandlers;
-            _navigationService = navigationService;
-            _themeSelectorService = themeSelectorService;
-            _persistAndRestoreService = persistAndRestoreService;
-        }
+	public ApplicationHostService(IServiceProvider serviceProvider, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService, IThemeSelectorService themeSelectorService, IPersistAndRestoreService persistAndRestoreService)
+	{
+		_serviceProvider = serviceProvider;
+		_activationHandlers = activationHandlers;
+		_navigationService = navigationService;
+		_themeSelectorService = themeSelectorService;
+		_persistAndRestoreService = persistAndRestoreService;
+	}
 
-        public async Task StartAsync(CancellationToken cancellationToken)
-        {
-            // Initialize services that you need before app activation
-            await InitializeAsync();
+	public async Task StartAsync(CancellationToken cancellationToken)
+	{
+		// Initialize services that you need before app activation
+		await InitializeAsync();
 
-            await HandleActivationAsync();
+		await HandleActivationAsync();
 
-            // Tasks after activation
-            await StartupAsync();
-            _isInitialized = true;
-        }
+		// Tasks after activation
+		await StartupAsync();
+		_isInitialized = true;
+	}
 
-        public async Task StopAsync(CancellationToken cancellationToken)
-        {
-            _persistAndRestoreService.PersistData();
-            await Task.CompletedTask;
-        }
+	public async Task StopAsync(CancellationToken cancellationToken)
+	{
+		_persistAndRestoreService.PersistData();
+		await Task.CompletedTask;
+	}
 
-        private async Task InitializeAsync()
-        {
-            if (!_isInitialized)
-            {
-                _persistAndRestoreService.RestoreData();
-                _themeSelectorService.InitializeTheme();
-                await Task.CompletedTask;
-            }
-        }
+	private async Task InitializeAsync()
+	{
+		if (!_isInitialized)
+		{
+			_persistAndRestoreService.RestoreData();
+			_themeSelectorService.InitializeTheme();
+			await Task.CompletedTask;
+		}
+	}
 
-        private async Task StartupAsync()
-        {
-            if (!_isInitialized)
-            {
-                await Task.CompletedTask;
-            }
-        }
+	private async Task StartupAsync()
+	{
+		if (!_isInitialized)
+		{
+			await Task.CompletedTask;
+		}
+	}
 
-        private async Task HandleActivationAsync()
-        {
-            IActivationHandler activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle());
+	private async Task HandleActivationAsync()
+	{
+		IActivationHandler activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle());
 
-            if (activationHandler != null)
-            {
-                await activationHandler.HandleAsync();
-            }
+		if (activationHandler != null)
+		{
+			await activationHandler.HandleAsync();
+		}
 
-            await Task.CompletedTask;
+		await Task.CompletedTask;
 
-            if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
-            {
-                // Default activation that navigates to the apps default page
-                _shellWindow = _serviceProvider.GetService(typeof(IShellWindow)) as IShellWindow;
-                _navigationService.Initialize(_shellWindow.GetNavigationFrame());
-                _shellWindow.ShowWindow();
-                _navigationService.NavigateTo(typeof(MainViewModel).FullName);
-                await Task.CompletedTask;
-            }
-        }
-    }
+		if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
+		{
+			// Default activation that navigates to the apps default page
+			_shellWindow = _serviceProvider.GetService(typeof(IShellWindow)) as IShellWindow;
+			_navigationService.Initialize(_shellWindow.GetNavigationFrame());
+			_shellWindow.ShowWindow();
+			_navigationService.NavigateTo(typeof(MainViewModel).FullName);
+			await Task.CompletedTask;
+		}
+	}
 }
