@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.310] - 2023-07-16
+### Changed
+- NuGet packages
+### Added
+- ReflectionWpf
+
 ## [0.1.210] - 2023-06-20
 ### Changed
 - NuGet packages
