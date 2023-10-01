@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>TemplateStudioWpfNavigation.Core</RootNamespace>
-    <Version>0.1.210.0</Version>
+    <Version>0.1.320.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
