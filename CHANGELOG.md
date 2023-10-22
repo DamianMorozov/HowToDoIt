@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.330] - 2023-10-22
+### Changed
+- WebAppDemo
+
 ## [0.1.320] - 2023-10-01
 ### Changed
 - NuGet packages
