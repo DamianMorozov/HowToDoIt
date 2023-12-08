@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ProductModel>;
+<html>
+<head>
+	<title>Products</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>ID</td>
+			<td>Name</td>
+			<td>Price</td>
+			<td>Date</td>
+		</tr>
+		@foreach (ProductModel product in Model ?? new List<ProductModel>())
+		{
+			<tr>
+				<td>@product.Id</td>
+				<td>@product.Name</td>
+				<td>@product.Price</td>
+				<td>@product.Dt.ToString("yyyy-MM-dd")</td>
+			</tr>
+		}
+	</table>
+</body>
+</html>

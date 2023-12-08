@@ -1,6 +1,6 @@
 ﻿namespace WebAppDemo.Components;
 
-public class AgeMiddleware
+public sealed class AgeMiddleware
 {
     #region Public and private fields, properties, constructor
 

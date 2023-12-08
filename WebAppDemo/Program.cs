@@ -7,6 +7,7 @@ builder.Services.AddSingleton<JsonAlertService>();
 builder.Services.AddSingleton<XmlAlertService>();
 builder.Services.AddScoped<IGuidService, GuidService>();
 builder.Services.AddScoped<UidService>();
+builder.Services.AddScoped<IProductService, MockProductService>();
 builder.Services.AddMvc(option => option.EnableEndpointRouting = false);
 
 var app = builder.Build();

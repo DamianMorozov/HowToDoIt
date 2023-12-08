@@ -10,6 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F0E732EB-2553-46B6-90CF-A66832B4F6E6}"
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOG.md = CHANGELOG.md
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection
@@ -32,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTelegramClientWinFormsDemo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionWpf", "ReflectionWpf\ReflectionWpf.csproj", "{B2A5073A-63F6-43F4-9797-500880499FD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppDemo", "WebAppDemo\WebAppDemo.csproj", "{E0F6393E-0053-4980-AD41-7DA4EB7AF827}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppDemo", "WebAppDemo\WebAppDemo.csproj", "{E0F6393E-0053-4980-AD41-7DA4EB7AF827}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,10 +74,10 @@ Global
 		{C381D8D1-71E3-4C1A-9FB7-8D2D6E03C4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C381D8D1-71E3-4C1A-9FB7-8D2D6E03C4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C381D8D1-71E3-4C1A-9FB7-8D2D6E03C4E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Debug|Any CPU.Build.0 = Debug|x64
+		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Release|Any CPU.ActiveCfg = Release|x64
+		{7DD4A782-380F-419C-94DC-41FC7FCB5ED0}.Release|Any CPU.Build.0 = Release|x64
 		{3C2BE612-B677-41D4-939F-A9709ACF4E6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3C2BE612-B677-41D4-939F-A9709ACF4E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C2BE612-B677-41D4-939F-A9709ACF4E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
