@@ -3,10 +3,11 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddSingleton<JsonAlertService>();
-builder.Services.AddSingleton<XmlAlertService>();
 builder.Services.AddScoped<IGuidService, GuidService>();
 builder.Services.AddScoped<UidService>();
+builder.Services.AddScoped<IHomeService, HomeService>();
+builder.Services.AddScoped<JsonConfigService>();
+builder.Services.AddScoped<XmlConfigService>();
 builder.Services.AddScoped<IProductService, MockProductService>();
 builder.Services.AddMvc(option => option.EnableEndpointRouting = false);
 

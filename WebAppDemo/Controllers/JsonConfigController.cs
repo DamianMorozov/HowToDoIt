@@ -1,32 +1,26 @@
 ﻿namespace WebAppDemo.Controllers;
 
-public sealed class HomeController : Controller
+public sealed class JsonConfigController : Controller
 {
 	#region Public and private fields, properties, constructor
 
-	private readonly IHomeService _homeService;
-
-	public HomeController(IHomeService homeService)
+	public JsonConfigController()
 	{
-		_homeService = homeService;
+		//
 	}
 
 	#endregion
-
 
 	#region Public and private methods
 
 	public ViewResult Index()
 	{
-		_homeService.Setup(HttpContext.Request.Headers["User-Agent"]);
-		return View(_homeService.Model);
+		IConfigService configService = HttpContext.RequestServices.GetRequiredService<JsonConfigService>();
+		return View(configService.Model);
 	}
 
 	//public string Index2()
 	//{
-	//	StringBuilder html = new();
-
-	//	IConfigService jsonService = HttpContext.RequestServices.GetRequiredService<JsonAlertService>();
 	//	IConfigService xmlService = HttpContext.RequestServices.GetRequiredService<XmlAlertService>();
 	//	//HttpContext.Response.ContentType = "text/html;charset=utf-8";
 
@@ -37,7 +31,6 @@ public sealed class HomeController : Controller
 	//	//    html.AppendLine($"Implementation type: {serviceDescriptor.ImplementationType?.FullName}");
 	//	//}
 
-	//	html.AppendLine($"Json service: {jsonService.GetMessage()}");
 	//	html.AppendLine($"XML service: {xmlService.GetMessage()}");
 
 	//	html.AppendLine(string.Empty);

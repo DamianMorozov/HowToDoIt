@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.1.340.0</Version>
+    <Version>0.1.350.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <None Update="index.xhtml">
