@@ -2,5 +2,5 @@
 
 public sealed class ConfigModel
 {
-	public string AlertMessage { get; set; } = "";
+	public string AlertMessage { get; set; } = string.Empty;
 }

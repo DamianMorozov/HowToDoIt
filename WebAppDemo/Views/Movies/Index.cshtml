@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MovieModel>;
+
+<html>
+<head>
+	<title>Movies</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>ID</td>
+			<td>Title</td>
+			<td>Genre</td>
+			<td>Duration</td>
+		</tr>
+		@foreach (MovieModel item in Model ?? new List<MovieModel>())
+		{
+			<tr>
+				<td>@item.Id</td>
+				<td>@item.Title</td>
+				<td>@item.Genre</td>
+				<td>@item.Duration</td>
+			</tr>
+		}
+	</table>
+</body>
+</html>

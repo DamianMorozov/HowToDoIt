@@ -1,0 +1,20 @@
+﻿@model IEnumerable<AutoModel>;
+
+<html>
+<head>
+	<title>Autos</title>
+</head>
+<body>
+	<table>
+		@foreach (AutoModel item in Model ?? new List<AutoModel>())
+		{
+			<h2>@item.Id</h2>
+			<p>@item.Brand</p>
+			<br />
+			<p>@item.Model</p>
+			<br />
+			<p>@item.EngineCapacity</p>
+		}
+	</table>
+</body>
+</html>

@@ -14,7 +14,9 @@ public sealed class MockProductService : IProductService
 		{
 			_products.Add(new()
 			{
-				Id = i, Name = $"Item {i}", Price = random.Next(1_000_000),
+				Id = i,
+				Name = $"Item {i}",
+				Price = random.Next(1_000_000),
 				Dt = DateOnly.Parse($"2023-{i}-{i}", new DateTimeFormatInfo())
 			});
 		}

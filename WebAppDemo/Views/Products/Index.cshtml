@@ -12,13 +12,13 @@
 			<td>Price</td>
 			<td>Date</td>
 		</tr>
-		@foreach (ProductModel product in Model ?? new List<ProductModel>())
+		@foreach (ProductModel item in Model ?? new List<ProductModel>())
 		{
 			<tr>
-				<td>@product.Id</td>
-				<td>@product.Name</td>
-				<td>@product.Price</td>
-				<td>@product.Dt.ToString("yyyy-MM-dd")</td>
+				<td>@item.Id</td>
+				<td>@item.Name</td>
+				<td>@item.Price</td>
+				<td>@item.Dt.ToString("yyyy-MM-dd")</td>
 			</tr>
 		}
 	</table>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MovieModel>;
+
+<html>
+<head>
+	<title>Movies</title>
+</head>
+<body>
+<table>
+	<ul>
+		@foreach (MovieModel item in Model ?? new List<MovieModel>())
+		{
+			<li>@item.GetInfo()</li>
+		}
+	</ul>
+</table>
+</body>
+</html>

@@ -4,11 +4,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.1.350.0</Version>
+    <Version>0.1.360.0</Version>
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.ML" Version="3.0.0" />
+    <PackageReference Include="Microsoft.ML" Version="3.0.1" />
   </ItemGroup>
   <ItemGroup Label="SentimentModel">
     <None Include="SentimentModel.consumption.cs">

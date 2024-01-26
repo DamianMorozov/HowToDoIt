@@ -8,6 +8,8 @@ builder.Services.AddScoped<UidService>();
 builder.Services.AddScoped<IHomeService, HomeService>();
 builder.Services.AddScoped<JsonConfigService>();
 builder.Services.AddScoped<XmlConfigService>();
+builder.Services.AddScoped<IAutoService, MockAutoService>();
+builder.Services.AddScoped<IMovieService, MockMovieService>();
 builder.Services.AddScoped<IProductService, MockProductService>();
 builder.Services.AddMvc(option => option.EnableEndpointRouting = false);
 
