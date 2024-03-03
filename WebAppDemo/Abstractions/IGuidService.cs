@@ -1,4 +1,4 @@
-﻿namespace WebAppDemo.Services;
+﻿namespace WebAppDemo.Abstractions;
 
 public interface IGuidService
 {

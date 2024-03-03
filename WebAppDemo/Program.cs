@@ -11,6 +11,7 @@ builder.Services.AddScoped<XmlConfigService>();
 builder.Services.AddScoped<IAutoService, MockAutoService>();
 builder.Services.AddScoped<IMovieService, MockMovieService>();
 builder.Services.AddScoped<IProductService, MockProductService>();
+//builder.Services
 builder.Services.AddMvc(option => option.EnableEndpointRouting = false);
 
 var app = builder.Build();

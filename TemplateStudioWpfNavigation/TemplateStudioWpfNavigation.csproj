@@ -5,14 +5,14 @@
     <RootNamespace>TemplateStudioWpfNavigation</RootNamespace>
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>0.1.360.0</Version>
+    <Version>0.1.380.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2210.55" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2365.46" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateStudioWpfNavigation.Core\TemplateStudioWpfNavigation.Core.csproj" />
