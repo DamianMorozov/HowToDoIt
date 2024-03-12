@@ -7,7 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<Deterministic>true</Deterministic>
     <LangVersion>latest</LangVersion>
-    <Version>0.1.380.0</Version>
+    <Version>0.1.400.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Properties\**" />
@@ -15,7 +15,7 @@
     <None Remove="Properties\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="WTelegramClient" Version="3.6.6" />
+    <PackageReference Include="WTelegramClient" Version="3.7.1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

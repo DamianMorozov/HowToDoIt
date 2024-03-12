@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.400] - 2024-03-12
+### Added
+- WebApiDockerDemo
+
 ## [0.1.380] - 2024-03-03
 ### Added
 - BlazorDemo24
