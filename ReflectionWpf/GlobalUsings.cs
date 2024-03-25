@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 // Global using directives
 
 global using CommunityToolkit.Mvvm.ComponentModel;
@@ -24,6 +26,9 @@ global using System.Windows.Controls;
 global using System.Windows.Data;
 global using System.Windows.Media;
 global using System.Windows.Threading;
+global using ReflectionWpf.Views.Pages;
+global using ReflectionWpf.Views.Windows;
+global using Wpf.Ui.Appearance;
 global using Wpf.Ui.Common;
 global using Wpf.Ui.Common.Interfaces;
 global using Wpf.Ui.Controls;

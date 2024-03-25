@@ -1,16 +1,18 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+using WTelegram;
+
 namespace WTelegramClientWinFormsDemo;
 
 public partial class MainForm : Form
 {
-	private WTelegram.Client _client;
+	private Client _client;
 
 	public MainForm()
 	{
 		InitializeComponent();
-		WTelegram.Helpers.Log = (l, s) => Debug.WriteLine(s);
+		Helpers.Log = (l, s) => Debug.WriteLine(s);
 	}
 
 	private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -24,8 +26,8 @@ public partial class MainForm : Form
 		{
 			labelException.Text = string.Empty;
 			buttonLogin.Enabled = false;
-			listBox.Items.Add($"Connecting & login into Telegram servers...");
-			_client = new WTelegram.Client(int.Parse(textBoxApiID.Text), textBoxApiHash.Text);
+			listBox.Items.Add("Connecting & login into Telegram servers...");
+			_client = new Client(int.Parse(textBoxApiID.Text), textBoxApiHash.Text);
 			await DoLogin(textBoxPhone.Text);
 		}
 		catch (Exception ex)
@@ -102,7 +104,7 @@ public partial class MainForm : Form
 				MessageBox.Show(@"You must select a chat in the list first");
 				return;
 			}
-			Dictionary<long, User> users = chat is TL.Channel channel
+			Dictionary<long, User> users = chat is Channel channel
 				? (await _client.Channels_GetAllParticipants(channel)).users
 				: (await _client.Messages_GetFullChat(chat.ID)).users;
 			listBox.Items.Clear();
@@ -126,9 +128,9 @@ public partial class MainForm : Form
 				MessageBox.Show(@"You must login first.");
 				return;
 			}
-			Messages_Dialogs dialogs = await _client.Messages_GetAllDialogs(null);
+			Messages_Dialogs dialogs = await _client.Messages_GetAllDialogs();
 			listBox.Items.Clear();
-			foreach (TL.Dialog dialog in dialogs.dialogs)
+			foreach (Dialog dialog in dialogs.dialogs)
 			{
 				IPeerInfo peer = dialogs.UserOrChat(dialog);
 				if (peer.IsActive)

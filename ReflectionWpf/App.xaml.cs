@@ -34,15 +34,15 @@ public partial class App
 			services.AddSingleton<INavigationService, NavigationService>();
 
 			// Main window with navigation
-			services.AddScoped<INavigationWindow, Views.Windows.MainWindow>();
+			services.AddScoped<INavigationWindow, MainWindow>();
 			services.AddScoped<MainWindowViewModel>();
 
 			// Views and ViewModels
-			services.AddScoped<Views.Pages.DashboardPage>();
+			services.AddScoped<DashboardPage>();
 			services.AddScoped<DashboardViewModel>();
-			services.AddScoped<Views.Pages.DataPage>();
+			services.AddScoped<DataPage>();
 			services.AddScoped<DataViewModel>();
-			services.AddScoped<Views.Pages.SettingsPage>();
+			services.AddScoped<SettingsPage>();
 			services.AddScoped<SettingsViewModel>();
 
 			// Configuration

@@ -5,19 +5,15 @@ namespace ReflectionWpf.Helpers;
 
 internal class EnumToBooleanConverter : IValueConverter
 {
-	public EnumToBooleanConverter()
-	{
-	}
-
 	public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 	{
 		if (parameter is not string enumString)
 			throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName");
 
-		if (!Enum.IsDefined(typeof(Wpf.Ui.Appearance.ThemeType), value))
+		if (!Enum.IsDefined(typeof(ThemeType), value))
 			throw new ArgumentException("ExceptionEnumToBooleanConverterValueMustBeAnEnum");
 
-		object enumValue = Enum.Parse(typeof(Wpf.Ui.Appearance.ThemeType), enumString);
+		object enumValue = Enum.Parse(typeof(ThemeType), enumString);
 
 		return enumValue.Equals(value);
 	}
@@ -27,6 +23,6 @@ internal class EnumToBooleanConverter : IValueConverter
 		if (parameter is not string enumString)
 			throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName");
 
-		return Enum.Parse(typeof(Wpf.Ui.Appearance.ThemeType), enumString);
+		return Enum.Parse(typeof(ThemeType), enumString);
 	}
 }

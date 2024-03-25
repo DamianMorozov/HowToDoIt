@@ -11,10 +11,6 @@ public class ShellDialogViewModel : ObservableObject
 
 	public Action<bool?> SetResult { get; set; }
 
-	public ShellDialogViewModel()
-	{
-	}
-
 	private void OnClose()
 	{
 		bool result = true;

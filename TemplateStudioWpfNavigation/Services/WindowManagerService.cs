@@ -26,7 +26,7 @@ public class WindowManagerService : IWindowManagerService
 		}
 		else
 		{
-			window = new MetroWindow()
+			window = new MetroWindow
 			{
 				Title = "TemplateStudioWpfNavigation",
 				Style = Application.Current.FindResource("CustomMetroWindow") as Style

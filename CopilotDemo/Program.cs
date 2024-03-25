@@ -1,6 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System.Xml.Linq;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+// See https://aka.ms/new-console-template for more information
 
 Console.WriteLine("Copilot Demo!");
 Console.WriteLine("For more info visit this url: https://github.com/github/copilot-docs/blob/main/docs/visualstudio/gettingstarted.md");

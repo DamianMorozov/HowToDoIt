@@ -41,12 +41,12 @@ public class ApplicationHostService : IHostedService
 	{
 		await Task.CompletedTask;
 
-		if (!Application.Current.Windows.OfType<Views.Windows.MainWindow>().Any())
+		if (!Application.Current.Windows.OfType<MainWindow>().Any())
 		{
 			_navigationWindow = (_serviceProvider.GetService(typeof(INavigationWindow)) as INavigationWindow)!;
 			_navigationWindow!.ShowWindow();
 
-			_navigationWindow.Navigate(typeof(Views.Pages.DashboardPage));
+			_navigationWindow.Navigate(typeof(DashboardPage));
 		}
 
 		await Task.CompletedTask;

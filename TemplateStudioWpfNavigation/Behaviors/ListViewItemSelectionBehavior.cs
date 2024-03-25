@@ -16,7 +16,7 @@ public class ListViewItemSelectionBehavior : Behavior<ListView>
 	protected override void OnAttached()
 	{
 		base.OnAttached();
-		ListView listView = AssociatedObject as ListView;
+		ListView listView = AssociatedObject;
 		listView.PreviewMouseLeftButtonDown += OnPreviewMouseLeftButtonDown;
 		listView.KeyDown += OnKeyDown;
 	}
@@ -24,7 +24,7 @@ public class ListViewItemSelectionBehavior : Behavior<ListView>
 	protected override void OnDetaching()
 	{
 		base.OnDetaching();
-		ListView listView = AssociatedObject as ListView;
+		ListView listView = AssociatedObject;
 		listView.PreviewMouseLeftButtonDown -= OnPreviewMouseLeftButtonDown;
 		listView.KeyDown -= OnKeyDown;
 	}

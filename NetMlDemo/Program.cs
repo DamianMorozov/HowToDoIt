@@ -1,9 +1,7 @@
 ﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-using NetMlDemo;
-
-string getSentiment(float predictedLabel) => predictedLabel == 1 ? "Positive" : "Negative";
+string GetSentiment(float predictedLabel) => predictedLabel == 1 ? "Positive" : "Negative";
 
 // Input data.
 List<string> list = new() {
@@ -18,6 +16,6 @@ foreach (string item in list)
     // Load model and predict output of sample data.
     SentimentModel.ModelOutput result = SentimentModel.Predict(sampleData);
     // Result.
-    Console.WriteLine($"Text: {sampleData.Col0}\nSentiment: {getSentiment(result.PredictedLabel)}");
+    Console.WriteLine($"Text: {sampleData.Col0}\nSentiment: {GetSentiment(result.PredictedLabel)}");
     Console.WriteLine();
 }

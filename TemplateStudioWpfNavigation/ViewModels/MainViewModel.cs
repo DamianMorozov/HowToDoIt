@@ -5,7 +5,4 @@ namespace TemplateStudioWpfNavigation.ViewModels;
 
 public class MainViewModel : ObservableObject
 {
-	public MainViewModel()
-	{
-	}
 }

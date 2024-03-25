@@ -6,7 +6,7 @@ namespace ReflectionWpf.ViewModels;
 public partial class DashboardViewModel : ObservableObject, INavigationAware
 {
 	[ObservableProperty]
-	private int _counter = 0;
+	private int _counter;
 
 	public void OnNavigatedTo()
 	{

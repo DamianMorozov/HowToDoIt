@@ -1,6 +1,8 @@
 ﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+using NavigationService = TemplateStudioWpfNavigation.Services.NavigationService;
+
 namespace TemplateStudioWpfNavigation;
 // For more information about application lifecycle events see https://docs.microsoft.com/dotnet/framework/wpf/app-development/application-management-overview
 
@@ -15,14 +17,10 @@ public partial class App : Application
 		where T : class
 		=> _host.Services.GetService(typeof(T)) as T;
 
-	public App()
-	{
-	}
-
 	private async void OnStartup(object sender, StartupEventArgs e)
 	{
 		// https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop
-		ToastNotificationManagerCompat.OnActivated += (toastArgs) =>
+		ToastNotificationManagerCompat.OnActivated += toastArgs =>
 		{
 			Current.Dispatcher.Invoke(async () =>
 			{
@@ -80,7 +78,7 @@ public partial class App : Application
 		services.AddSingleton<ISampleDataService, SampleDataService>();
 		services.AddSingleton<ISystemService, SystemService>();
 		services.AddSingleton<IPageService, PageService>();
-		services.AddSingleton<INavigationService, Services.NavigationService>();
+		services.AddSingleton<INavigationService, NavigationService>();
 
 		// Views and ViewModels
 		services.AddTransient<IShellWindow, ShellWindow>();

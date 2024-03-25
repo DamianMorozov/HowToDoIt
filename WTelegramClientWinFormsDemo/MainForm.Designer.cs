@@ -1,11 +1,16 @@
-﻿namespace WTelegramClientWinFormsDemo;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+using System.ComponentModel;
+
+namespace WTelegramClientWinFormsDemo;
 
 partial class MainForm
 {
 	/// <summary>
 	///  Required designer variable.
 	/// </summary>
-	private System.ComponentModel.IContainer components = null;
+	private IContainer components = null;
 
 	/// <summary>
 	///  Clean up any resources being used.
@@ -277,17 +282,17 @@ partial class MainForm
 
 	#endregion
 
-	private System.Windows.Forms.Button buttonLogin;
-	private System.Windows.Forms.ListBox listBox;
-	private System.Windows.Forms.TextBox textBoxApiID;
-	private System.Windows.Forms.Label label1;
-	private System.Windows.Forms.Label label2;
-	private System.Windows.Forms.TextBox textBoxApiHash;
-	private System.Windows.Forms.Label label3;
-	private System.Windows.Forms.TextBox textBoxPhone;
-	private System.Windows.Forms.Label labelCode;
-	private System.Windows.Forms.TextBox textBoxCode;
-	private System.Windows.Forms.Button buttonSendCode;
+	private Button buttonLogin;
+	private ListBox listBox;
+	private TextBox textBoxApiID;
+	private Label label1;
+	private Label label2;
+	private TextBox textBoxApiHash;
+	private Label label3;
+	private TextBox textBoxPhone;
+	private Label labelCode;
+	private TextBox textBoxCode;
+	private Button buttonSendCode;
 	private LinkLabel labelException;
 	private Button buttonSendMsg;
 	private Button buttonGetDialogs;

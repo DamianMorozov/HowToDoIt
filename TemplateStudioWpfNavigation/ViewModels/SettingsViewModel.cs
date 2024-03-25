@@ -41,7 +41,7 @@ public class SettingsViewModel : ObservableObject, INavigationAware
 
 	public void OnNavigatedTo(object parameter)
 	{
-		VersionDescription = $"{Properties.Resources.AppDisplayName} - {_applicationInfoService.GetVersion()}";
+		VersionDescription = $"{Resources.AppDisplayName} - {_applicationInfoService.GetVersion()}";
 		Theme = _themeSelectorService.GetCurrentTheme();
 	}
 

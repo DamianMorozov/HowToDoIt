@@ -1,13 +1,15 @@
 ﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+using MenuItem = Wpf.Ui.Controls.MenuItem;
+
 namespace ReflectionWpf.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
 {
 	#region Public and private fields, properties, constructor
 
-	private bool _isInitialized = false;
+	private bool _isInitialized;
 
 	[ObservableProperty]
 	private string _applicationTitle = string.Empty;
@@ -37,7 +39,7 @@ public partial class MainWindowViewModel : ObservableObject
 	private ObservableCollection<INavigationControl> _navigationFooter = new();
 
 	[ObservableProperty]
-	private ObservableCollection<Wpf.Ui.Controls.MenuItem> _trayMenuItems = new();
+	private ObservableCollection<MenuItem> _trayMenuItems = new();
 
 	public MainWindowViewModel(INavigationService navigationService)
 	{
@@ -58,30 +60,30 @@ public partial class MainWindowViewModel : ObservableObject
 
 		NavigationItems = new()
 		{
-			new NavigationItem()
+			new NavigationItem
 			{
 				Content = "Home",
 				PageTag = "dashboard",
 				Icon = SymbolRegular.Home24,
-				PageType = typeof(Views.Pages.DashboardPage)
+				PageType = typeof(DashboardPage)
 			},
-			new NavigationItem()
+			new NavigationItem
 			{
 				Content = "Data",
 				PageTag = "data",
 				Icon = SymbolRegular.DataHistogram24,
-				PageType = typeof(Views.Pages.DataPage)
+				PageType = typeof(DataPage)
 			}
 		};
 
 		NavigationFooter = new()
 		{
-			new NavigationItem()
+			new NavigationItem
 			{
 				Content = "Settings",
 				PageTag = "settings",
 				Icon = SymbolRegular.Settings24,
-				PageType = typeof(Views.Pages.SettingsPage)
+				PageType = typeof(SettingsPage)
 			}
 		};
 

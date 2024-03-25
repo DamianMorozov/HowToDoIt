@@ -5,7 +5,7 @@ namespace ReflectionWpf.ViewModels;
 
 public partial class DataViewModel : ObservableObject, INavigationAware
 {
-	private bool _isInitialized = false;
+	private bool _isInitialized;
 
 	[ObservableProperty]
 	private IEnumerable<DataColorModel> _colors;
@@ -29,7 +29,7 @@ public partial class DataViewModel : ObservableObject, INavigationAware
 			colorCollection.Add(new()
 			{
 				Color = new SolidColorBrush(Color.FromArgb(
-					(byte)200,
+					200,
 					(byte)random.Next(0, 250),
 					(byte)random.Next(0, 250),
 					(byte)random.Next(0, 250)))

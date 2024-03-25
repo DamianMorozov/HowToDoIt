@@ -1,16 +1,10 @@
-﻿namespace WebAppDemo.Controllers;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+namespace WebAppDemo.Controllers;
 
 public sealed class XmlConfigController : Controller
 {
-	#region Public and private fields, properties, constructor
-
-	public XmlConfigController()
-	{
-		//
-	}
-
-	#endregion
-
 	#region Public and private methods
 
 	public ViewResult Index()

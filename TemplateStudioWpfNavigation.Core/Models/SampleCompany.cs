@@ -1,32 +1,32 @@
-﻿using System.Collections.Generic;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-namespace TemplateStudioWpfNavigation.Core.Models
+namespace TemplateStudioWpfNavigation.Core.Models;
+
+// Remove this class once your pages/features are using your data.
+// This is used by the SampleDataService.
+// It is the model class we use to display data on pages like Grid, Chart, and List Details.
+public class SampleCompany
 {
-    // Remove this class once your pages/features are using your data.
-    // This is used by the SampleDataService.
-    // It is the model class we use to display data on pages like Grid, Chart, and List Details.
-    public class SampleCompany
-    {
-        public string CompanyID { get; set; }
+	public string CompanyID { get; set; }
 
-        public string CompanyName { get; set; }
+	public string CompanyName { get; set; }
 
-        public string ContactName { get; set; }
+	public string ContactName { get; set; }
 
-        public string ContactTitle { get; set; }
+	public string ContactTitle { get; set; }
 
-        public string Address { get; set; }
+	public string Address { get; set; }
 
-        public string City { get; set; }
+	public string City { get; set; }
 
-        public string PostalCode { get; set; }
+	public string PostalCode { get; set; }
 
-        public string Country { get; set; }
+	public string Country { get; set; }
 
-        public string Phone { get; set; }
+	public string Phone { get; set; }
 
-        public string Fax { get; set; }
+	public string Fax { get; set; }
 
-        public ICollection<SampleOrder> Orders { get; set; }
-    }
+	public ICollection<SampleOrder> Orders { get; set; }
 }

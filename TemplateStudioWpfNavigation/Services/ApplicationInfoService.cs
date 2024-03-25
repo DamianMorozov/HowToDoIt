@@ -5,10 +5,6 @@ namespace TemplateStudioWpfNavigation.Services;
 
 public class ApplicationInfoService : IApplicationInfoService
 {
-	public ApplicationInfoService()
-	{
-	}
-
 	public Version GetVersion()
 	{
 		// Set the app version in TemplateStudioWpfNavigation > Properties > Package > PackageVersion
