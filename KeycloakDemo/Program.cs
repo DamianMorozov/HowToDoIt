@@ -78,11 +78,30 @@ async Task WriteUsersAsync(UsersApi usersApi, AuthenticationFlow credentials)
 {
 	try
 	{
-		Console.WriteLine($"  Users: {usersApi.GetUsersCountAsync(credentials.Realm)}");
-		List<UserRepresentation> users = await usersApi.GetUsersAsync(credentials.Realm);
-		foreach (UserRepresentation user in users)
+		if (string.IsNullOrEmpty(credentials.KeycloakUrl)) return;
+		if (string.IsNullOrEmpty(credentials.Realm)) return;
+		if (credentials is PasswordGrantFlow passwordGrant)
 		{
-			Console.WriteLine(user);
+			if (string.IsNullOrEmpty(passwordGrant.UserName)) return;
+			if (string.IsNullOrEmpty(passwordGrant.Password)) return;
+		}
+		if (credentials is ClientCredentialsFlow clientCredentials)
+		{
+			if (string.IsNullOrEmpty(clientCredentials.ClientId)) return;
+			if (string.IsNullOrEmpty(clientCredentials.ClientSecret)) return;
+		}
+
+		// Portioned data reading, since downloading all data at once crashes on timeout.
+		var usersCount = usersApi.GetUsersCount(credentials.Realm);
+		Console.WriteLine($"  Users count: {usersCount}");
+		var batchSize = 100;
+		var firstPosition = 0;
+		while (firstPosition < usersCount)
+		{
+			List<UserRepresentation> users = await usersApi.GetUsersAsync(credentials.Realm, first: firstPosition, max: batchSize);
+			foreach (UserRepresentation user in users)
+				Console.WriteLine(user);
+			firstPosition += batchSize;
 		}
 	}
 	catch (Exception ex)
