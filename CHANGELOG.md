@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.440] - 2024-03-27
+### Changed
+- KeycloakDemo
+- Projects versions
+
 ## [0.1.430] - 2024-03-25
 ### Added
 - KeycloakDemo
