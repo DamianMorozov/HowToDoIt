@@ -13,6 +13,7 @@
 	<Nullable>enable</Nullable>
 	<UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <Version>0.1.510.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
