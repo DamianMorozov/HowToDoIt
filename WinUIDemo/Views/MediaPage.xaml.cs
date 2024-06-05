@@ -2,15 +2,12 @@
 
 public sealed partial class MediaPage : Page
 {
-    private IList<MediaItem> _items;
+    private IList<MediaItem> _items = default!;
     private bool _isLoaded = false;
-    private IList<string> _mediums;
-    private IList<MediaItem> _allItems;
+    private IList<string> _mediums = default!;
+    private IList<MediaItem> _allItems = default!;
 
-    public MediaViewModel ViewModel
-    {
-        get;
-    }
+    public MediaViewModel ViewModel { get; }
 
     public MediaPage()
     {

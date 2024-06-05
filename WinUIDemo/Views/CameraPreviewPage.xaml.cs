@@ -1,31 +1,17 @@
-﻿using CommunityToolkit.WinUI.Controls;
-using CommunityToolkit.WinUI.Helpers;
-using Microsoft.UI.Xaml.Media.Imaging;
-using Windows.Graphics.Imaging;
-using Windows.Media;
+﻿namespace WinUIDemo.Views;
 
-namespace WinUIDemo.Views;
-
-//[ToolkitSampleBoolOption("ShowCamera", true, Title = "Show camera toggle button")]
-//[ToolkitSample(id: nameof(MediaCapturePage), "CameraPreview", description: $"A sample for showing how to create and use a {nameof(MediaCapturePage)} control.")]
-[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "Controls dispose resources when unloaded")]
-public sealed partial class MediaCapturePage : Page
+public sealed partial class CameraPreviewPage : Page
 {
     private static SemaphoreSlim? semaphoreSlim;
-    private VideoFrame _currentVideoFrame;
-    private SoftwareBitmapSource _softwareBitmapSource;
+    private VideoFrame _currentVideoFrame = default!;
+    private SoftwareBitmapSource _softwareBitmapSource = default!;
     public bool ShowCamera { get; set; }
 
-    public MediaCaptureViewModel ViewModel
-    {
-        get;
-    }
+    public CameraPreviewViewModel ViewModel { get; }
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    public MediaCapturePage()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    public CameraPreviewPage()
     {
-        ViewModel = App.GetService<MediaCaptureViewModel>();
+        ViewModel = App.GetService<CameraPreviewViewModel>();
         InitializeComponent();
 
         Loaded += this.CameraPreviewSample_Loaded;
@@ -71,14 +57,14 @@ public sealed partial class MediaCapturePage : Page
         semaphoreSlim.Release();
     }
 
-//    protected override void OnNavigatedTo(NavigationEventArgs e)
-//    {
-//        base.OnNavigatedTo(e);
-//#if !WINAPPSDK
-//        Application.Current.Suspending += Application_Suspending;
-//        Application.Current.Resuming += Application_Resuming;
-//#endif
-//    }
+    //    protected override void OnNavigatedTo(NavigationEventArgs e)
+    //    {
+    //        base.OnNavigatedTo(e);
+    //#if !WINAPPSDK
+    //        Application.Current.Suspending += Application_Suspending;
+    //        Application.Current.Resuming += Application_Resuming;
+    //#endif
+    //    }
 
     //    protected async override void OnNavigatedFrom(NavigationEventArgs e)
     //    {

@@ -64,8 +64,8 @@ public partial class App : Application
             services.AddTransient<SettingsPage>();
             services.AddTransient<MediaViewModel>();
             services.AddTransient<MediaPage>();
-            services.AddTransient<MediaCaptureViewModel>();
-            services.AddTransient<MediaCapturePage>();
+            services.AddTransient<CameraPreviewViewModel>();
+            services.AddTransient<CameraPreviewPage>();
             services.AddTransient<MainViewModel>();
             services.AddTransient<MainPage>();
             services.AddTransient<ShellPage>();

@@ -56,7 +56,7 @@
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_MediaCapture" helpers:NavigationHelper.NavigateTo="WinUIDemo.ViewModels.MediaCaptureViewModel">
+                <NavigationViewItem x:Uid="Shell_MediaCapture" helpers:NavigationHelper.NavigateTo="WinUIDemo.ViewModels.CameraPreviewViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;" />
                     </NavigationViewItem.Icon>

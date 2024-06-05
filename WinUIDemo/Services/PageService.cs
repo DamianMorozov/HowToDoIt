@@ -8,7 +8,7 @@ public class PageService : IPageService
     {
         Configure<MainViewModel, MainPage>();
         Configure<MediaViewModel, MediaPage>();
-        Configure<MediaCaptureViewModel, MediaCapturePage>();
+        Configure<CameraPreviewViewModel, CameraPreviewPage>();
         Configure<SettingsViewModel, SettingsPage>();
     }
 
