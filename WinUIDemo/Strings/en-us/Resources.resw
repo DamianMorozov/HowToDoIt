@@ -70,6 +70,9 @@
   <data name="Shell_Media.Content" xml:space="preserve">
     <value>Media</value>
   </data>
+  <data name="Shell_MediaCapture.Content" xml:space="preserve">
+    <value>Media capture</value>
+  </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalization</value>
   </data>
