@@ -13,7 +13,7 @@
 	<Nullable>enable</Nullable>
 	<UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
-    <Version>0.1.520.0</Version>
+    <Version>0.1.530.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Views\CameraPreviewPage.xaml" />
