@@ -7,7 +7,10 @@ public sealed partial class MediaPage : Page
     private IList<string> _mediums = default!;
     private IList<MediaItem> _allItems = default!;
 
-    public MediaViewModel ViewModel { get; }
+    public MediaViewModel ViewModel
+    {
+        get;
+    }
 
     public MediaPage()
     {
@@ -95,5 +98,17 @@ public sealed partial class MediaPage : Page
         _allItems = [cd, book, bluRay];
 
         _mediums = [nameof(EnumItemType.All), nameof(EnumItemType.Book), nameof(EnumItemType.Music), nameof(EnumItemType.Video),];
+    }
+
+    private async void AddButton_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new ContentDialog();
+        dialog.XamlRoot = this.XamlRoot;
+        dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+        dialog.Title = "Adding itmes to the collection is not yet available.";
+        dialog.CloseButtonText = "Cancel";
+        dialog.DefaultButton = ContentDialogButton.Close;
+        //dialog.Content = new ContentDialogContent();
+        var result = await dialog.ShowAsync();
     }
 }

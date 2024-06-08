@@ -14,23 +14,22 @@ public sealed partial class CameraPreviewPage : Page
         ViewModel = App.GetService<CameraPreviewViewModel>();
         InitializeComponent();
 
-        Loaded += this.CameraPreviewSample_Loaded;
-        Unloaded += this.CameraPreviewSample_Unloaded;
+        Loaded += CameraPreviewSample_Loaded;
+        Unloaded += CameraPreviewSample_Unloaded;
 
         semaphoreSlim = new SemaphoreSlim(1);
     }
 
     private void CameraPreviewSample_Unloaded(object sender, RoutedEventArgs e)
     {
-        Unloaded -= this.CameraPreviewSample_Unloaded;
+        Unloaded -= CameraPreviewSample_Unloaded;
 
         _softwareBitmapSource?.Dispose();
     }
 
     private void CameraPreviewSample_Loaded(object sender, RoutedEventArgs e)
     {
-        Loaded -= this.CameraPreviewSample_Loaded;
-
+        Loaded -= CameraPreviewSample_Loaded;
         Load();
     }
 
@@ -57,45 +56,41 @@ public sealed partial class CameraPreviewPage : Page
         semaphoreSlim.Release();
     }
 
-    //    protected override void OnNavigatedTo(NavigationEventArgs e)
-    //    {
-    //        base.OnNavigatedTo(e);
-    //#if !WINAPPSDK
-    //        Application.Current.Suspending += Application_Suspending;
-    //        Application.Current.Resuming += Application_Resuming;
-    //#endif
-    //    }
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+        //Window.Current.Activated += Current_Activated;
+        //Window.Current.Deactivated += Current_Deactivated;
+    }
 
-    //    protected async override void OnNavigatedFrom(NavigationEventArgs e)
-    //    {
-    //        base.OnNavigatedFrom(e);
-    //#if !WINAPPSDK
-    //        Application.Current.Suspending -= Application_Suspending;
-    //        Application.Current.Resuming -= Application_Resuming;
-    //#endif
-    //        await CleanUpAsync();
-    //    }
+    protected async override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        base.OnNavigatedFrom(e);
+        //Window.Current.Activated -= Window_Activated;
+        //Application.Deactivated -= Window_Deactivated;
+        await CleanUpAsync();
+    }
 
-    //    private async void Application_Suspending(object sender, SuspendingEventArgs e)
-    //    {
-    //        if (Frame?.CurrentSourcePageType == typeof(CameraPreviewSample))
-    //        {
-    //            var deferral = e.SuspendingOperation.GetDeferral();
-    //            await CleanUpAsync();
-    //            deferral.Complete();
-    //        }
-    //    }
+    private async void Current_Activated(object sender, WindowActivatedEventArgs args)
+    {
+        if (CameraPreviewControl != null)
+        {
+            var cameraHelper = CameraPreviewControl.CameraHelper;
+            CameraPreviewControl.PreviewFailed += CameraPreviewControl_PreviewFailed!;
+            await CameraPreviewControl.StartAsync(cameraHelper);
+            CameraPreviewControl.CameraHelper.FrameArrived += CameraPreviewControl_FrameArrived!;
+        }
+    }
 
-    //    private async void Application_Resuming(object sender, object e)
-    //    {
-    //        if (CameraPreviewControl != null)
-    //        {
-    //            var cameraHelper = CameraPreviewControl.CameraHelper;
-    //            CameraPreviewControl.PreviewFailed += CameraPreviewControl_PreviewFailed!;
-    //            await CameraPreviewControl.StartAsync(cameraHelper);
-    //            CameraPreviewControl.CameraHelper.FrameArrived += CameraPreviewControl_FrameArrived!;
-    //        }
-    //    }
+    private async void Current_Deactivated(object sender, WindowEventArgs args)
+    {
+        if (Frame?.CurrentSourcePageType == typeof(CameraPreviewPage))
+        {
+            //var deferral = args.SuspendingOperation.GetDeferral();
+            await CleanUpAsync();
+            //deferral.Complete();
+        }
+    }
 
     private void CameraPreviewControl_FrameArrived(object sender, FrameEventArgs e)
     {
@@ -134,11 +129,11 @@ public sealed partial class CameraPreviewPage : Page
         CameraPreviewControl.PreviewFailed -= CameraPreviewControl_PreviewFailed!;
     }
 
-    //private async Task CleanUpAsync()
-    //{
-    //    UnsubscribeFromEvents();
+    private async Task CleanUpAsync()
+    {
+        UnsubscribeFromEvents();
 
-    //    CameraPreviewControl.Stop();
-    //    await CameraPreviewControl.CameraHelper.CleanUpAsync();
-    //}
+        CameraPreviewControl.Stop();
+        await CameraPreviewControl.CameraHelper.CleanUpAsync();
+    }
 }
