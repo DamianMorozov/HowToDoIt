@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "NfcReaderDemo (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "NfcReaderDemo (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
