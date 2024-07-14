@@ -4,6 +4,9 @@ Examples of the use of different technologies
 - [CHANGELOG](CHANGELOG.md)
 - [LICENSE](LICENSE.md)
 
+## NfcReaderDemo
+![](Assets/NfcReaderDemo.png?raw=true)
+
 ## WinUIDemo
 ![](Assets/WinUIDemo.png?raw=true)
 
