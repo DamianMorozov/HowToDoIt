@@ -5,4 +5,5 @@ public enum EnumLocationType
     Music,
     Video,
     Book,
+    InCollection,
 }

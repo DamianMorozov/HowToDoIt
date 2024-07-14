@@ -127,10 +127,10 @@
     <value>Main</value>
   </data>
   <data name="Shell_Media.Content" xml:space="preserve">
-    <value>Media</value>
+    <value>Media collection</value>
   </data>
   <data name="Shell_MediaCapture.Content" xml:space="preserve">
-    <value>Media capture</value>
+    <value>Camera capture</value>
   </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalization</value>
@@ -175,5 +175,8 @@
   </data>
   <data name="AddButton.Content" xml:space="preserve">
     <value>Add item</value>
+  </data>
+  <data name="DeleteButton.Content" xml:space="preserve">
+    <value>Delete item</value>
   </data>
 </root>

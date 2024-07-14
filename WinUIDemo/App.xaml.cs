@@ -60,16 +60,14 @@ public partial class App : Application
             services.AddSingleton<IFileService, FileService>();
 
             // Views and ViewModels
+            services.AddTransient<ShellViewModel>();
+            services.AddTransient<ShellPage>();
+            services.AddSingleton<MediaViewModel>();
+            services.AddTransient<MediaPage>();
+            services.AddSingleton<CameraPreviewViewModel>();
+            services.AddTransient<CameraPreviewPage>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
-            services.AddTransient<MediaViewModel>();
-            services.AddTransient<MediaPage>();
-            services.AddTransient<CameraPreviewViewModel>();
-            services.AddTransient<CameraPreviewPage>();
-            services.AddTransient<MainViewModel>();
-            services.AddTransient<MainPage>();
-            services.AddTransient<ShellPage>();
-            services.AddTransient<ShellViewModel>();
 
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
@@ -81,10 +79,18 @@ public partial class App : Application
         UnhandledException += App_UnhandledException;
     }
 
-    private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+    private async void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
     {
         // TODO: Log and handle exceptions as appropriate.
         // https://docs.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.application.unhandledexception.
+        var dialog = new ContentDialog();
+        //dialog.XamlRoot = this.XamlRoot;
+        dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+        dialog.Title = e.Message;
+        dialog.Content = e.Exception.StackTrace;
+        dialog.CloseButtonText = "Cancel";
+        dialog.DefaultButton = ContentDialogButton.Close;
+        _ = await dialog.ShowAsync();
     }
 
     protected async override void OnLaunched(LaunchActivatedEventArgs args)

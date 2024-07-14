@@ -1,6 +1,6 @@
 ﻿namespace WinUIDemo.ViewModels;
 
-public partial class ShellViewModel : ObservableRecipient
+public sealed partial class ShellViewModel : ObservableRecipient
 {
     [ObservableProperty]
     private bool isBackEnabled;

@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.540] - 2024-07-14
+### Changed
+- WinUIDemo
+
 ## [0.1.530] - 2024-06-08
 ### Changed
 - WinUIDemo

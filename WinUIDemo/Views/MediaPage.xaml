@@ -11,28 +11,31 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-		<StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+		<StackPanel
+			Grid.Row="0"
+			HorizontalAlignment="Right"
+			Orientation="Horizontal">
 			<TextBlock
 				Margin="10,10,10,10"
 				VerticalAlignment="Center"
 				FontWeight="Bold"
 				Text="Media type" />
 			<ComboBox
-				x:Name="ItemFilter"
 				MinWidth="120"
-				Margin="10,10,10,10" />
-			<Button
-				x:Uid="AddButton"
 				Margin="10,10,10,10"
 				HorizontalAlignment="Right"
-				Click="AddButton_Click" />
+				ItemsSource="{x:Bind ViewModel.Mediums, Mode=OneWay}"
+				SelectedItem="{x:Bind ViewModel.SelectedMedium, Mode=TwoWay}"
+				SelectionChanged="{x:Bind ViewModel.FilterChanged, Mode=OneWay}" />
 		</StackPanel>
 		<ListView
-			x:Name="ItemList"
 			Grid.Row="1"
 			Margin="0,25,0,0"
-			Background="Transparent">
+			Background="Transparent"
+			ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}"
+			SelectedItem="{x:Bind ViewModel.SelectedMediaItem, Mode=TwoWay}">
 			<ListView.HeaderTemplate>
 				<DataTemplate>
 					<Grid>
@@ -73,5 +76,18 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
+		<StackPanel
+			Grid.Row="2"
+			HorizontalAlignment="Right"
+			Orientation="Horizontal">
+			<Button
+				x:Uid="AddButton"
+				Margin="10,10,10,10"
+				Command="{x:Bind ViewModel.AddEditCommand, Mode=OneWay}" />
+			<Button
+				x:Uid="DeleteButton"
+				Margin="10,10,10,10"
+				Command="{x:Bind ViewModel.DeleteCommand, Mode=OneWay}" />
+		</StackPanel>
 	</Grid>
 </Page>

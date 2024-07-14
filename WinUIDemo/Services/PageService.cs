@@ -6,7 +6,6 @@ public class PageService : IPageService
 
     public PageService()
     {
-        Configure<MainViewModel, MainPage>();
         Configure<MediaViewModel, MediaPage>();
         Configure<CameraPreviewViewModel, CameraPreviewPage>();
         Configure<SettingsViewModel, SettingsPage>();

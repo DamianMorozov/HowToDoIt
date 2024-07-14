@@ -4,6 +4,9 @@ Examples of the use of different technologies
 - [CHANGELOG](CHANGELOG.md)
 - [LICENSE](LICENSE.md)
 
+## WinUIDemo
+![](Assets/WinUIDemo.png?raw=true)
+
 ## WTelegramClientWinFormsDemo
 ![](Assets/WTelegramClientWinFormsDemo.png?raw=true)
 
