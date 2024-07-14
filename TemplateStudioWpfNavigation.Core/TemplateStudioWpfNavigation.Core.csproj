@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>TemplateStudioWpfNavigation.Core</RootNamespace>
-    <Version>0.1.530.0</Version>
+    <Version>0.1.550.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Models\" />
