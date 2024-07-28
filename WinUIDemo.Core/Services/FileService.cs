@@ -1,10 +1,4 @@
-﻿using System.Text;
-
-using Newtonsoft.Json;
-
-using WinUIDemo.Core.Contracts.Services;
-
-namespace WinUIDemo.Core.Services;
+﻿namespace WinUIDemo.Core.Services;
 
 public class FileService : IFileService
 {

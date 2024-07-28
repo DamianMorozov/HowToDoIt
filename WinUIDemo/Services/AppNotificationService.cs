@@ -1,18 +1,12 @@
 ﻿using System.Collections.Specialized;
 using System.Web;
-
 using Microsoft.Windows.AppNotifications;
 
-namespace WinUIDemo.Notifications;
+namespace WinUIDemo.Services;
 
-public class AppNotificationService : IAppNotificationService
+public class AppNotificationService(INavigationService navigationService) : IAppNotificationService
 {
-    private readonly INavigationService _navigationService;
-
-    public AppNotificationService(INavigationService navigationService)
-    {
-        _navigationService = navigationService;
-    }
+    private readonly INavigationService _navigationService = navigationService;
 
     ~AppNotificationService()
     {

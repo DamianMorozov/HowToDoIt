@@ -1,6 +1,6 @@
 ﻿namespace WinUIDemo.ViewModels;
 
-public partial class SettingsViewModel : ObservableRecipient
+public sealed partial class SettingsViewModel : ObservableRecipient
 {
     private readonly IThemeSelectorService _themeSelectorService;
 

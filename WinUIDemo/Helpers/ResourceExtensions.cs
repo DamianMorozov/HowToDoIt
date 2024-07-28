@@ -1,6 +1,4 @@
-﻿using Microsoft.Windows.ApplicationModel.Resources;
-
-namespace WinUIDemo.Helpers;
+﻿namespace WinUIDemo.Helpers;
 
 public static class ResourceExtensions
 {

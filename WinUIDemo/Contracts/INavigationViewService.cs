@@ -1,4 +1,4 @@
-﻿namespace WinUIDemo.Contracts.Services;
+﻿namespace WinUIDemo.Contracts;
 
 public interface INavigationViewService
 {

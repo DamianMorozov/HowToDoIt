@@ -1,6 +1,4 @@
-﻿using System.Collections.Specialized;
-
-namespace WinUIDemo.Contracts.Services;
+﻿namespace WinUIDemo.Core.Contracts;
 
 public interface IAppNotificationService
 {

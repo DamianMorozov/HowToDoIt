@@ -1,13 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using WinUIDemo.Contracts.ViewModels;
-
-namespace WinUIDemo.Services;
+﻿namespace WinUIDemo.Services;
 
 // For more information on navigation between pages see
 // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/navigation.md
-public class NavigationService : INavigationService
+public class NavigationService(IPageService pageService) : INavigationService
 {
-    private readonly IPageService _pageService;
     private object? _lastParameterUsed;
     private Frame? _frame;
 
@@ -17,15 +13,13 @@ public class NavigationService : INavigationService
     {
         get
         {
-            if (_frame == null)
+            if (_frame is null)
             {
                 _frame = App.MainWindow.Content as Frame;
                 RegisterFrameEvents();
             }
-
             return _frame;
         }
-
         set
         {
             UnregisterFrameEvents();
@@ -35,16 +29,11 @@ public class NavigationService : INavigationService
     }
 
     [MemberNotNullWhen(true, nameof(Frame), nameof(_frame))]
-    public bool CanGoBack => Frame != null && Frame.CanGoBack;
-
-    public NavigationService(IPageService pageService)
-    {
-        _pageService = pageService;
-    }
+    public bool CanGoBack => Frame is not null && Frame.CanGoBack;
 
     private void RegisterFrameEvents()
     {
-        if (_frame != null)
+        if (_frame is not null)
         {
             _frame.Navigated += OnNavigated;
         }
@@ -52,7 +41,7 @@ public class NavigationService : INavigationService
 
     private void UnregisterFrameEvents()
     {
-        if (_frame != null)
+        if (_frame is not null)
         {
             _frame.Navigated -= OnNavigated;
         }
@@ -77,9 +66,9 @@ public class NavigationService : INavigationService
 
     public bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false)
     {
-        var pageType = _pageService.GetPageType(pageKey);
+        var pageType = pageService.GetPageType(pageKey);
 
-        if (_frame != null && (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed))))
+        if (_frame is not null && (_frame.Content?.GetType() != pageType || (parameter is not null && !parameter.Equals(_lastParameterUsed))))
         {
             _frame.Tag = clearNavigation;
             var vmBeforeNavigation = _frame.GetPageViewModel();

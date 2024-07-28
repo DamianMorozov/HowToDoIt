@@ -1,23 +1,17 @@
 ﻿namespace WinUIDemo.Activation;
 
-public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+public class DefaultActivationHandler(INavigationService navigationService)
+    : ActivationHandler<LaunchActivatedEventArgs>
 {
-    private readonly INavigationService _navigationService;
-
-    public DefaultActivationHandler(INavigationService navigationService)
-    {
-        _navigationService = navigationService;
-    }
-
     protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
     {
         // None of the ActivationHandlers has handled the activation.
-        return _navigationService.Frame?.Content == null;
+        return navigationService.Frame?.Content is null;
     }
 
     protected async override Task HandleInternalAsync(LaunchActivatedEventArgs args)
     {
-        _navigationService.NavigateTo(typeof(MediaViewModel).FullName!, args.Arguments);
+        navigationService.NavigateTo(typeof(MediaViewModel).FullName!, args.Arguments);
 
         await Task.CompletedTask;
     }

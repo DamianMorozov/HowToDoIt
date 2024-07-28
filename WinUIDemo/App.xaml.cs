@@ -1,35 +1,21 @@
 ﻿namespace WinUIDemo;
 
 // To learn more about WinUI 3, see https://docs.microsoft.com/windows/apps/winui/winui3/.
-public partial class App : Application
+public sealed partial class App : Application
 {
     // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
     // https://docs.microsoft.com/dotnet/core/extensions/generic-host
     // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
     // https://docs.microsoft.com/dotnet/core/extensions/configuration
     // https://docs.microsoft.com/dotnet/core/extensions/logging
-    public IHost Host
-    {
-        get;
-    }
-
-    public static T GetService<T>()
-        where T : class
-    {
-        if ((App.Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
-        {
-            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
-        }
-
-        return service;
-    }
-
+    public IHost Host { get; }
+    public static T GetService<T>() where T : class =>
+        (Current as App)!.Host.Services.GetService(typeof(T)) is not T service
+            ? throw new ArgumentException(
+                $"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.")
+            : service;
     public static WindowEx MainWindow { get; } = new MainWindow();
-
-    public static UIElement? AppTitlebar
-    {
-        get; set;
-    }
+    public static UIElement? AppTitlebar { get; set; }
 
     public App()
     {
@@ -42,39 +28,35 @@ public partial class App : Application
         {
             // Default Activation Handler
             services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
-
             // Other Activation Handlers
             services.AddTransient<IActivationHandler, AppNotificationActivationHandler>();
-
             // Services
-            services.AddSingleton<IAppNotificationService, AppNotificationService>();
-            services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
-            services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
-            services.AddTransient<INavigationViewService, NavigationViewService>();
-
             services.AddSingleton<IActivationService, ActivationService>();
-            services.AddSingleton<IPageService, PageService>();
-            services.AddSingleton<INavigationService, NavigationService>();
-
-            // Core Services
+            services.AddSingleton<IAppNotificationService, AppNotificationService>();
+            services.AddSingleton<IDataService, DataService>();
             services.AddSingleton<IFileService, FileService>();
-
+            services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
+            services.AddSingleton<INavigationService, NavigationService>();
+            services.AddSingleton<INavigationViewService, NavigationViewService>();
+            services.AddSingleton<IPageService, PageService>();
+            services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
             // Views and ViewModels
             services.AddTransient<ShellViewModel>();
             services.AddTransient<ShellPage>();
-            services.AddSingleton<MediaViewModel>();
+            services.AddTransient<MediaItemViewModel>();
+            services.AddTransient<MediaViewModel>();
+            services.AddTransient<MediaItemPage>();
             services.AddTransient<MediaPage>();
-            services.AddSingleton<CameraPreviewViewModel>();
+            services.AddTransient<CameraPreviewViewModel>();
             services.AddTransient<CameraPreviewPage>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
-
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
         }).
         Build();
 
-        App.GetService<IAppNotificationService>().Initialize();
+        GetService<IAppNotificationService>().Initialize();
 
         UnhandledException += App_UnhandledException;
     }
@@ -85,7 +67,7 @@ public partial class App : Application
         // https://docs.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.application.unhandledexception.
         var dialog = new ContentDialog();
         //dialog.XamlRoot = this.XamlRoot;
-        dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+        dialog.Style = Current.Resources["DefaultContentDialogStyle"] as Style;
         dialog.Title = e.Message;
         dialog.Content = e.Exception.StackTrace;
         dialog.CloseButtonText = "Cancel";
@@ -96,9 +78,8 @@ public partial class App : Application
     protected async override void OnLaunched(LaunchActivatedEventArgs args)
     {
         base.OnLaunched(args);
-
-        App.GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
-
-        await App.GetService<IActivationService>().ActivateAsync(args);
+        //Frame rootFrame = Window.Current.Content as Frame;
+        GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
+        await GetService<IActivationService>().ActivateAsync(args);
     }
 }

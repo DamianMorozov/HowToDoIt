@@ -3,16 +3,13 @@ using DispatcherQueuePriority = Microsoft.UI.Dispatching.DispatcherQueuePriority
 
 namespace WinUIDemo.Activation;
 
-public class AppNotificationActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+public class AppNotificationActivationHandler(
+    INavigationService navigationService,
+    IAppNotificationService notificationService)
+    : ActivationHandler<LaunchActivatedEventArgs>
 {
-    private readonly INavigationService _navigationService;
-    private readonly IAppNotificationService _notificationService;
-
-    public AppNotificationActivationHandler(INavigationService navigationService, IAppNotificationService notificationService)
-    {
-        _navigationService = navigationService;
-        _notificationService = notificationService;
-    }
+    private readonly INavigationService _navigationService = navigationService;
+    private readonly IAppNotificationService _notificationService = notificationService;
 
     protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
     {

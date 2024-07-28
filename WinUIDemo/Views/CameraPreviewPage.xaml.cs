@@ -43,7 +43,7 @@ public sealed partial class CameraPreviewPage : Page
         var cameraHelper = CameraPreviewControl?.CameraHelper;
         UnsubscribeFromEvents();
 
-        if (CameraPreviewControl != null)
+        if (CameraPreviewControl is not null)
         {
             CameraPreviewControl.PreviewFailed += CameraPreviewControl_PreviewFailed!;
             await CameraPreviewControl.StartAsync(cameraHelper!);
@@ -73,7 +73,7 @@ public sealed partial class CameraPreviewPage : Page
 
     private async void Current_Activated(object sender, WindowActivatedEventArgs args)
     {
-        if (CameraPreviewControl != null)
+        if (CameraPreviewControl is not null)
         {
             var cameraHelper = CameraPreviewControl.CameraHelper;
             CameraPreviewControl.PreviewFailed += CameraPreviewControl_PreviewFailed!;
@@ -108,7 +108,7 @@ public sealed partial class CameraPreviewPage : Page
     {
         var softwareBitmap = _currentVideoFrame?.SoftwareBitmap;
 
-        if (softwareBitmap != null)
+        if (softwareBitmap is not null)
         {
             if (softwareBitmap.BitmapPixelFormat != BitmapPixelFormat.Bgra8 || softwareBitmap.BitmapAlphaMode == BitmapAlphaMode.Straight)
             {
@@ -121,7 +121,7 @@ public sealed partial class CameraPreviewPage : Page
 
     private void UnsubscribeFromEvents()
     {
-        if (CameraPreviewControl.CameraHelper != null)
+        if (CameraPreviewControl.CameraHelper is not null)
         {
             CameraPreviewControl.CameraHelper.FrameArrived -= CameraPreviewControl_FrameArrived!;
         }

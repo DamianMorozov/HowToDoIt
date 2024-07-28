@@ -1,21 +1,19 @@
-﻿using System.Collections.ObjectModel;
+﻿namespace WinUIDemo.ViewModels;
 
-namespace WinUIDemo.ViewModels;
-
-public sealed partial class MediaViewModel : ObservableRecipient
+public sealed class MediaViewModel : ObservableRecipient
 {
     private string _selectedMedium = default!;
     public string SelectedMedium { get => _selectedMedium; set => SetProperty(ref _selectedMedium, value); }
     private ObservableCollection<MediaItem> _items = default!;
     public ObservableCollection<MediaItem> Items { get => _items; set => SetProperty(ref _items, value); }
-    private bool _isLoaded = false;
+    private bool _isLoaded;
     public bool IsLoaded { get => _isLoaded; set => SetProperty(ref _isLoaded, value); }
     private ObservableCollection<MediaItem> _allItems = default!;
     public ObservableCollection<MediaItem> AllItems { get => _allItems; set => SetProperty(ref _allItems, value); }
     private ObservableCollection<string> _mediums = default!;
     public ObservableCollection<string> Mediums { get => _mediums; set => SetProperty(ref _mediums, value); }
-    private MediaItem _selectedMediaItem = default!;
-    public MediaItem SelectedMediaItem
+    private MediaItem? _selectedMediaItem;
+    public MediaItem? SelectedMediaItem
     {
         get => _selectedMediaItem;
         set {
@@ -25,15 +23,19 @@ public sealed partial class MediaViewModel : ObservableRecipient
             }
         }
     }
-    private int _additionalItemCount = default!;
+    private int _additionalItemCount;
     public int AdditionalItemCount { get => _additionalItemCount; set => SetProperty(ref _additionalItemCount, value); }
 
     public ICommand AddEditCommand { get; }
     public ICommand DeleteCommand { get; }
-    private bool CanDeleteItem() => SelectedMediaItem != null;
+    private bool CanDeleteItem() => SelectedMediaItem is not null;
+    private readonly INavigationService _navigationService;
+    private readonly IDataService _dataService;
 
-    public MediaViewModel()
+    public MediaViewModel(INavigationService navigationService, IDataService dataService)
     {
+        _navigationService = navigationService;
+        _dataService = dataService;
         AddEditCommand = new RelayCommand(AddEditItem);
         DeleteCommand = new RelayCommand(DeleteItem, CanDeleteItem);
         PopulateData();
@@ -110,8 +112,16 @@ public sealed partial class MediaViewModel : ObservableRecipient
 
     public void DeleteItem()
     {
-        AllItems.Remove(SelectedMediaItem);
-        Items.Remove(SelectedMediaItem);
+        if (SelectedMediaItem is not null)
+        {
+            AllItems.Remove(SelectedMediaItem);
+            Items.Remove(SelectedMediaItem);
+        }
+    }
+
+    public void ListViewDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+    {
+        AddEditItem();
     }
 
     public void FilterChanged(object sender, SelectionChangedEventArgs e)

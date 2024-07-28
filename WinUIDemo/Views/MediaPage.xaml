@@ -34,11 +34,12 @@
 			Grid.Row="1"
 			Margin="0,25,0,0"
 			Background="Transparent"
+			DoubleTapped="{x:Bind ViewModel.ListViewDoubleTapped, Mode=OneWay}"
 			ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}"
 			SelectedItem="{x:Bind ViewModel.SelectedMediaItem, Mode=TwoWay}">
 			<ListView.HeaderTemplate>
 				<DataTemplate>
-					<Grid>
+					<Grid IsHitTestVisible="False">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="100" />
 							<ColumnDefinition Width="*" />

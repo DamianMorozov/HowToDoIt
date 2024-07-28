@@ -1,24 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿namespace WinUIDemo.Services;
 
-namespace WinUIDemo.Services;
-
-public class NavigationViewService : INavigationViewService
+public class NavigationViewService(INavigationService navigationService, IPageService pageService)
+    : INavigationViewService
 {
-    private readonly INavigationService _navigationService;
-
-    private readonly IPageService _pageService;
-
     private NavigationView? _navigationView;
-
     public IList<object>? MenuItems => _navigationView?.MenuItems;
-
     public object? SettingsItem => _navigationView?.SettingsItem;
-
-    public NavigationViewService(INavigationService navigationService, IPageService pageService)
-    {
-        _navigationService = navigationService;
-        _pageService = pageService;
-    }
 
     [MemberNotNull(nameof(_navigationView))]
     public void Initialize(NavigationView navigationView)
@@ -30,16 +17,15 @@ public class NavigationViewService : INavigationViewService
 
     public void UnregisterEvents()
     {
-        if (_navigationView != null)
-        {
-            _navigationView.BackRequested -= OnBackRequested;
-            _navigationView.ItemInvoked -= OnItemInvoked;
-        }
+        if (_navigationView is null) return;
+
+        _navigationView.BackRequested -= OnBackRequested;
+        _navigationView.ItemInvoked -= OnItemInvoked;
     }
 
     public NavigationViewItem? GetSelectedItem(Type pageType)
     {
-        if (_navigationView != null)
+        if (_navigationView is not null)
         {
             return GetSelectedItem(_navigationView.MenuItems, pageType) ?? GetSelectedItem(_navigationView.FooterMenuItems, pageType);
         }
@@ -47,13 +33,13 @@ public class NavigationViewService : INavigationViewService
         return null;
     }
 
-    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => _navigationService.GoBack();
+    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => navigationService.GoBack();
 
     private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
     {
         if (args.IsSettingsInvoked)
         {
-            _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
+            navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
         }
         else
         {
@@ -61,7 +47,7 @@ public class NavigationViewService : INavigationViewService
 
             if (selectedItem?.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
             {
-                _navigationService.NavigateTo(pageKey);
+                navigationService.NavigateTo(pageKey);
             }
         }
     }
@@ -76,7 +62,7 @@ public class NavigationViewService : INavigationViewService
             }
 
             var selectedChild = GetSelectedItem(item.MenuItems, pageType);
-            if (selectedChild != null)
+            if (selectedChild is not null)
             {
                 return selectedChild;
             }
@@ -89,7 +75,7 @@ public class NavigationViewService : INavigationViewService
     {
         if (menuItem.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
         {
-            return _pageService.GetPageType(pageKey) == sourcePageType;
+            return pageService.GetPageType(pageKey) == sourcePageType;
         }
 
         return false;

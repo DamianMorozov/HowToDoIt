@@ -1,4 +1,5 @@
 ﻿namespace WinUIDemo.Core.Enums;
+
 public enum EnumLocationType
 {
     None,
@@ -6,4 +7,5 @@ public enum EnumLocationType
     Video,
     Book,
     InCollection,
+    Loaned,
 }

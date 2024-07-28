@@ -3,20 +3,14 @@
 public sealed partial class ShellViewModel : ObservableRecipient
 {
     [ObservableProperty]
-    private bool isBackEnabled;
+    private bool _isBackEnabled;
 
     [ObservableProperty]
-    private object? selected;
+    private object? _selected;
 
-    public INavigationService NavigationService
-    {
-        get;
-    }
+    public INavigationService NavigationService { get; }
 
-    public INavigationViewService NavigationViewService
-    {
-        get;
-    }
+    public INavigationViewService NavigationViewService { get; }
 
     public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
     {
@@ -36,7 +30,7 @@ public sealed partial class ShellViewModel : ObservableRecipient
         }
 
         var selectedItem = NavigationViewService.GetSelectedItem(e.SourcePageType);
-        if (selectedItem != null)
+        if (selectedItem is not null)
         {
             Selected = selectedItem;
         }
