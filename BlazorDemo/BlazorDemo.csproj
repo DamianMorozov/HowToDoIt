@@ -4,11 +4,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>0.1.550.0</Version>
+    <Version>0.1.560.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Radzen.Blazor" Version="5.0.3" />
+    <PackageReference Include="Radzen.Blazor" Version="5.3.1" />
   </ItemGroup>
 
 </Project>

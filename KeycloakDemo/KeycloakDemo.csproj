@@ -5,11 +5,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.1.550.0</Version>
+    <Version>0.1.560.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Schick.Keycloak.RestApiClient" Version="25.0.0" />
+    <PackageReference Include="Schick.Keycloak.RestApiClient" Version="26.0.0" />
   </ItemGroup>
 
 </Project>
