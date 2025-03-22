@@ -44,8 +44,8 @@ public sealed partial class App : Application
             services.AddTransient<ShellViewModel>();
             services.AddTransient<ShellPage>();
             services.AddTransient<MediaItemViewModel>();
-            services.AddTransient<MediaViewModel>();
             services.AddTransient<MediaItemPage>();
+            services.AddTransient<MediaViewModel>();
             services.AddTransient<MediaPage>();
             services.AddTransient<CameraPreviewViewModel>();
             services.AddTransient<CameraPreviewPage>();

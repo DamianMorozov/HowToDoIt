@@ -16,11 +16,6 @@
     <Version>0.1.560.0</Version>
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Views\CameraPreviewPage.xaml" />
-    <None Remove="Views\ItemDetailsPage.xaml" />
-    <None Remove="Views\MediaItemPage.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />

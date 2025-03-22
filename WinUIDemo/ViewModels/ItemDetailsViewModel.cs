@@ -9,7 +9,7 @@ public sealed class ItemDetailsViewModel : ObservableRecipient
     public ICommand SaveCommand { get; }
     public ICommand CancelCommand { get; }
 
-    private ObservableCollection<string> _locationTypes = new();
+    private ObservableCollection<string> _locationTypes = [];
     public ObservableCollection<string> LocationTypes { get => _locationTypes; set => SetProperty(ref _locationTypes, value); }
     private ObservableCollection<string> _mediums = default!;
     public ObservableCollection<string> Mediums { get => _mediums; set => SetProperty(ref _mediums, value); }
@@ -58,7 +58,8 @@ public sealed class ItemDetailsViewModel : ObservableRecipient
     private string _selectedLocation = default!;
     public string SelectedLocation
     {
-        get => _selectedLocation; set
+        get => _selectedLocation;
+        set
         {
             if (_selectedLocation == value) return;
             SetProperty(ref _selectedLocation, value);
@@ -71,6 +72,8 @@ public sealed class ItemDetailsViewModel : ObservableRecipient
     {
         _navigationService = navigationService;
         _dataService = dataService;
+        _itemTypes = [];
+
         SaveCommand = new RelayCommand(SaveItem, () => IsDirty);
         CancelCommand = new RelayCommand(Cancel);
         PopulateLists();
@@ -113,7 +116,7 @@ public sealed class ItemDetailsViewModel : ObservableRecipient
         LocationTypes.Clear();
         foreach (var lType in Enum.GetNames(typeof(EnumLocationType)))
             LocationTypes.Add(lType);
-        Mediums = new ObservableCollection<string>();
+        Mediums = [];
     }
 
     private void SaveItem()

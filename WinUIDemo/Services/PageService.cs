@@ -2,11 +2,13 @@
 
 public class PageService : IPageService
 {
-    private readonly Dictionary<string, Type> _pages = new();
+    private readonly Dictionary<string, Type> _pages = [];
 
     public PageService()
     {
         Configure<MediaViewModel, MediaPage>();
+        Configure<MediaItemViewModel, MediaItemPage>();
+        Configure<ItemDetailsViewModel, ItemDetailsPage>();
         Configure<CameraPreviewViewModel, CameraPreviewPage>();
         Configure<SettingsViewModel, SettingsPage>();
     }

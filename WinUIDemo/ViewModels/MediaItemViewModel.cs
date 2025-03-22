@@ -2,11 +2,11 @@
 
 public sealed partial class MediaItemViewModel : ObservableObject
 {
-    private ObservableCollection<string> _locationTypes = new();
+    private ObservableCollection<string> _locationTypes = [];
     public ObservableCollection<string> LocationTypes { get => _locationTypes; set => SetProperty(ref _locationTypes, value); }
-    private ObservableCollection<string> _mediums = new();
+    private ObservableCollection<string> _mediums = [];
     public ObservableCollection<string> Mediums { get => _mediums; set => SetProperty(ref _mediums, value); }
-    private ObservableCollection<string> _itemTypes = new();
+    private ObservableCollection<string> _itemTypes = [];
     public ObservableCollection<string> ItemTypes { get => _itemTypes; set => SetProperty(ref _itemTypes, value); }
     private int _itemId;
     private string _itemName;
@@ -76,7 +76,7 @@ public sealed partial class MediaItemViewModel : ObservableObject
         foreach (var lType in Enum.GetNames(typeof(EnumLocationType)))
             LocationTypes.Add(lType);
 
-        Mediums = new();
+        Mediums = [];
     }
 
     //[RelayCommand(CanExecute = nameof(CanSaveItem))]

@@ -39,6 +39,11 @@ public sealed class MediaViewModel : ObservableRecipient
     {
         _navigationService = navigationService;
         _dataService = dataService;
+        _items = [];
+        _allItems = [];
+        _mediums = [];
+        _allMmediums = [];
+
         AddEditCommand = new RelayCommand(AddEditItem);
         DeleteCommand = new RelayCommand(DeleteItem, CanDeleteItem);
         PopulateData();
@@ -50,12 +55,13 @@ public sealed class MediaViewModel : ObservableRecipient
     {
         if (_isLoaded) return;
         IsLoaded = true;
+        Items.Clear();
         foreach (var item in _dataService.GetItems())
         {
             Items.Add(item);
         }
-        AllItems = new ObservableCollection<MediaItem>(Items);
-        Mediums = new ObservableCollection<string>(AllMediums);
+        AllItems = [.. Items];
+        Mediums = [.. AllMediums];
         foreach (var itemType in _dataService.GetItemTypes())
         {
             Mediums.Add(itemType.ToString());
@@ -68,7 +74,7 @@ public sealed class MediaViewModel : ObservableRecipient
         var selectedItemId = -1;
         if (SelectedMediaItem is not null)
             selectedItemId = SelectedMediaItem.Id;
-        _navigationService.NavigateTo(nameof(ItemDetailsPage), selectedItemId);
+        _navigationService.NavigateTo(typeof(ItemDetailsViewModel).FullName!, selectedItemId);
     }
 
     public void DeleteItem()
@@ -92,6 +98,6 @@ public sealed class MediaViewModel : ObservableRecipient
             where string.IsNullOrWhiteSpace(SelectedMedium) || SelectedMedium == nameof(EnumItemType.All) || SelectedMedium == item.MediaType.ToString()
             select item).ToList();
         Items.Clear();
-        Items = new ObservableCollection<MediaItem>(updatedItems);
+        Items = [.. updatedItems];
     }
 }
