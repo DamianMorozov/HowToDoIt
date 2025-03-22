@@ -2,10 +2,10 @@
 
 public sealed class DataService : IDataService
 {
-    private IList<MediaItem> _items;
-    private IList<EnumItemType> _itemTypes;
-    private IList<Medium> _mediums;
-    private IList<EnumLocationType> _locationTypes;
+    private IList<MediaItem> _items = default!;
+    private IList<EnumItemType> _itemTypes = default!;
+    private IList<Medium> _mediums = default!;
+    private IList<EnumLocationType> _locationTypes = default!;
 
     public DataService()
     {
@@ -22,34 +22,31 @@ public sealed class DataService : IDataService
             Id = 1,
             Name = "Classical Favorites",
             MediaType = EnumItemType.Music,
-            MediumInfo = _mediums.FirstOrDefault(m => m.Name == "CD"),
+            MediumInfo = _mediums.FirstOrDefault(m => m.Name == "CD") ?? new(),
             Location = EnumLocationType.InCollection
         };
-
         var book = new MediaItem
         {
             Id = 2,
             Name = "Classic Fairy Tales",
             MediaType = EnumItemType.Book,
-            MediumInfo = _mediums.FirstOrDefault(m => m.Name == "Hardcover"),
+            MediumInfo = _mediums.FirstOrDefault(m => m.Name == "Hardcover") ?? new(),
             Location = EnumLocationType.InCollection
         };
-
         var bluRay = new MediaItem
         {
             Id = 3,
             Name = "The Mummy",
             MediaType = EnumItemType.Video,
-            MediumInfo = _mediums.FirstOrDefault(m => m.Name == "Blu Ray"),
+            MediumInfo = _mediums.FirstOrDefault(m => m.Name == "Blu Ray") ?? new(),
             Location = EnumLocationType.InCollection
         };
-
-        _items = new List<MediaItem>
-        {
+        _items =
+        [
             cd,
             book,
             bluRay
-        };
+        ];
     }
 
     private void PopulateMediums()
@@ -61,74 +58,53 @@ public sealed class DataService : IDataService
         var dvd = new Medium { Id = 5, MediaType = EnumItemType.Video, Name = "DVD" };
         var bluRay = new Medium { Id = 6, MediaType = EnumItemType.Video, Name = "Blu Ray" };
 
-        _mediums = new List<Medium>
-        {
+        _mediums =
+        [
             cd,
             vinyl,
             hardcover,
             paperback,
             dvd,
             bluRay
-        };
+        ];
     }
 
-    private void PopulateItemTypes()
-    {
-        _itemTypes = new List<EnumItemType>
-        {
+    private void PopulateItemTypes() =>
+        _itemTypes =
+        [
             EnumItemType.Book,
             EnumItemType.Music,
             EnumItemType.Video
-        };
-    }
+        ];
 
     private void PopulateLocationTypes()
     {
-        _locationTypes = new List<EnumLocationType>
-        {
+        _locationTypes =
+        [
             EnumLocationType.InCollection,
             EnumLocationType.Loaned
-        };
+        ];
     }
+
+    public MediaItem GetItem(int id) => 
+        _items.FirstOrDefault(i => i.Id == id) ?? new();
+
+    public IList<MediaItem> GetItems() => _items;
+
+    public IList<EnumItemType> GetItemTypes() => _itemTypes;
+
+    public IList<Medium> GetMediums() => _mediums;
+
+    public IList<Medium> GetMediums(EnumItemType itemType) =>
+        _mediums.Where(m => m.MediaType == itemType).ToList();
+
+    public IList<EnumLocationType> GetLocationTypes() => _locationTypes;
 
     public int AddItem(MediaItem item)
     {
         item.Id = _items.Max(i => i.Id) + 1;
         _items.Add(item);
-
         return item.Id;
-    }
-
-    public MediaItem GetItem(int id)
-    {
-        return _items.FirstOrDefault(i => i.Id == id);
-    }
-
-    public IList<MediaItem> GetItems()
-    {
-        return _items;
-    }
-
-    public IList<EnumItemType> GetItemTypes()
-    {
-        return _itemTypes;
-    }
-
-    public IList<Medium> GetMediums()
-    {
-        return _mediums;
-    }
-
-    public IList<Medium> GetMediums(EnumItemType itemType)
-    {
-        return _mediums
-            .Where(m => m.MediaType == itemType)
-            .ToList();
-    }
-
-    public IList<EnumLocationType> GetLocationTypes()
-    {
-        return _locationTypes;
     }
 
     public void UpdateItem(MediaItem item)
@@ -139,17 +115,13 @@ public sealed class DataService : IDataService
                 let ind = idx++
                 where x.Id == item.Id
                 select ind).FirstOrDefault();
-
         if (idx == -1)
         {
             throw new Exception("Unable to update item. Item not found in collection.");
         }
-
         _items[idx] = item;
     }
 
-    public Medium GetMedium(string name)
-    {
-        return _mediums.FirstOrDefault(m => m.Name == name);
-    }
+    public Medium GetMedium(string name) => 
+        _mediums.FirstOrDefault(m => m.Name == name) ?? new();
 }

@@ -30,6 +30,10 @@ public sealed partial class MediaItemViewModel : ObservableObject
     {
         _navigationService = navigationService;
         _dataService = dataService;
+        _itemName = string.Empty;
+        _selectedMedium = string.Empty;
+        _selectedItemType = string.Empty;
+        _selectedLocation = string.Empty;
 
         PopulateLists();
         SaveCommand = new RelayCommand(Save, CanSaveItem);

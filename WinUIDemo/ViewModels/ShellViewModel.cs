@@ -3,10 +3,9 @@
 public sealed partial class ShellViewModel : ObservableRecipient
 {
     [ObservableProperty]
-    private bool _isBackEnabled;
-
+    public partial bool IsBackEnabled { get; set; }
     [ObservableProperty]
-    private object? _selected;
+    public partial object? Selected { get; set; }
 
     public INavigationService NavigationService { get; }
 

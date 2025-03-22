@@ -51,6 +51,8 @@ public sealed partial class App : Application
             services.AddTransient<CameraPreviewPage>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
+            services.AddTransient<ItemDetailsViewModel>();
+            services.AddTransient<ItemDetailsPage>();
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
         }).
