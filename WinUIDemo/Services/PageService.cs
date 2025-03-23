@@ -6,11 +6,11 @@ public class PageService : IPageService
 
     public PageService()
     {
+        Configure<SettingsViewModel, SettingsPage>();
         Configure<MediaViewModel, MediaPage>();
-        Configure<MediaItemViewModel, MediaItemPage>();
         Configure<ItemDetailsViewModel, ItemDetailsPage>();
         Configure<CameraPreviewViewModel, CameraPreviewPage>();
-        Configure<SettingsViewModel, SettingsPage>();
+        Configure<FusionCacheViewModel, FusionCachePage>();
     }
 
     public Type GetPageType(string key)

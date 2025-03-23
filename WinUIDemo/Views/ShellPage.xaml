@@ -46,14 +46,22 @@
                 TODO: Update item icons by updating FontIcon.Glyph properties.
                 https://docs.microsoft.com/windows/apps/design/style/segoe-fluent-icons-font#icon-list
 				-->
+				<!--  Media  -->
 				<NavigationViewItem x:Uid="Shell_Media" helpers:NavigationHelper.NavigateTo="WinUIDemo.ViewModels.MediaViewModel">
 					<NavigationViewItem.Icon>
 						<FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEA69;" />
 					</NavigationViewItem.Icon>
 				</NavigationViewItem>
+				<!--  Media capture  -->
 				<NavigationViewItem x:Uid="Shell_MediaCapture" helpers:NavigationHelper.NavigateTo="WinUIDemo.ViewModels.CameraPreviewViewModel">
 					<NavigationViewItem.Icon>
 						<FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE722;" />
+					</NavigationViewItem.Icon>
+				</NavigationViewItem>
+				<!--  FusionCache  -->
+				<NavigationViewItem x:Uid="Shell_FusionCache" helpers:NavigationHelper.NavigateTo="WinUIDemo.ViewModels.FusionCacheViewModel">
+					<NavigationViewItem.Icon>
+						<FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE71D;" />
 					</NavigationViewItem.Icon>
 				</NavigationViewItem>
 			</NavigationView.MenuItems>

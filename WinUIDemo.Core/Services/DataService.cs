@@ -72,6 +72,7 @@ public sealed class DataService : IDataService
     private void PopulateItemTypes() =>
         _itemTypes =
         [
+            EnumItemType.All,
             EnumItemType.Book,
             EnumItemType.Music,
             EnumItemType.Video

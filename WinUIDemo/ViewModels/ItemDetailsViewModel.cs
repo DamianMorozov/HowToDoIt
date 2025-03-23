@@ -1,24 +1,21 @@
 ﻿
 namespace WinUIDemo.ViewModels;
 
-public sealed class ItemDetailsViewModel : ObservableRecipient
+public sealed partial class ItemDetailsViewModel : ObservableRecipient
 {
     private readonly INavigationService _navigationService;
     private readonly IDataService _dataService;
 
-    public ICommand SaveCommand { get; }
-    public ICommand CancelCommand { get; }
-
-    private ObservableCollection<string> _locationTypes = [];
-    public ObservableCollection<string> LocationTypes { get => _locationTypes; set => SetProperty(ref _locationTypes, value); }
-    private ObservableCollection<string> _mediums = default!;
-    public ObservableCollection<string> Mediums { get => _mediums; set => SetProperty(ref _mediums, value); }
-    private ObservableCollection<string> _itemTypes = default!;
-    public ObservableCollection<string> ItemTypes { get => _itemTypes; set => SetProperty(ref _itemTypes, value); }
+    [ObservableProperty]
+    public partial ObservableCollection<string> LocationTypes { get; set; }
+    [ObservableProperty]
+    public partial ObservableCollection<string> Mediums { get; set; }
+    [ObservableProperty]
+    public partial ObservableCollection<string> ItemTypes { get; set; }
     public int _itemId;
     public int _selectedItemId = -1;
-    private bool _isDirty;
-    public bool IsDirty { get => _isDirty; set => SetProperty(ref _isDirty, value); }
+    [ObservableProperty]
+    public partial bool IsDirty { get; set; }
     private string _itemName = default!;
     public string ItemName
     {
@@ -50,7 +47,7 @@ public sealed class ItemDetailsViewModel : ObservableRecipient
             Mediums.Clear();
             if (!string.IsNullOrWhiteSpace(value))
             {
-                foreach (var med in _dataService.GetMediums((EnumItemType)Enum.Parse(typeof(EnumItemType), SelectedItemType)).Select(m => m.Name))
+                foreach (var med in _dataService.GetMediums(Enum.Parse<EnumItemType>(SelectedItemType)).Select(m => m.Name))
                     Mediums.Add(med);
             }
         }
@@ -67,16 +64,21 @@ public sealed class ItemDetailsViewModel : ObservableRecipient
         }
     }
 
+    public ICommand SaveCommand { get; }
+    public ICommand CancelCommand { get; }
 
     public ItemDetailsViewModel(INavigationService navigationService, IDataService dataService)
     {
         _navigationService = navigationService;
         _dataService = dataService;
-        _itemTypes = [];
+        Mediums = [];
+        LocationTypes = [];
+        ItemTypes = [];
+
+        PopulateLists();
 
         SaveCommand = new RelayCommand(SaveItem, () => IsDirty);
         CancelCommand = new RelayCommand(Cancel);
-        PopulateLists();
     }
 
     public void InitializeItemDetailData(int selectedItemId)
@@ -111,10 +113,10 @@ public sealed class ItemDetailsViewModel : ObservableRecipient
     private void PopulateLists()
     {
         ItemTypes.Clear();
-        foreach (var iType in Enum.GetNames(typeof(EnumItemType)))
+        foreach (var iType in Enum.GetNames<EnumItemType>())
             ItemTypes.Add(iType);
         LocationTypes.Clear();
-        foreach (var lType in Enum.GetNames(typeof(EnumLocationType)))
+        foreach (var lType in Enum.GetNames<EnumLocationType>())
             LocationTypes.Add(lType);
         Mediums = [];
     }
@@ -126,8 +128,8 @@ public sealed class ItemDetailsViewModel : ObservableRecipient
         {
             item = _dataService.GetItem(_itemId);
             item.Name = ItemName;
-            item.Location = (EnumLocationType)Enum.Parse(typeof(EnumLocationType), SelectedLocation);
-            item.MediaType = (EnumItemType)Enum.Parse(typeof(EnumItemType), SelectedItemType);
+            item.Location = Enum.Parse<EnumLocationType>(SelectedLocation);
+            item.MediaType = Enum.Parse<EnumItemType>(SelectedItemType);
             item.MediumInfo = _dataService.GetMedium(SelectedMedium);
             _dataService.UpdateItem(item);
         }
@@ -136,8 +138,8 @@ public sealed class ItemDetailsViewModel : ObservableRecipient
             item = new MediaItem
             {
                 Name = ItemName,
-                Location = (EnumLocationType)Enum.Parse(typeof(EnumLocationType), SelectedLocation),
-                MediaType = (EnumItemType)Enum.Parse(typeof(EnumItemType), SelectedItemType),
+                Location = Enum.Parse<EnumLocationType>(SelectedLocation),
+                MediaType = Enum.Parse<EnumItemType>(SelectedItemType),
                 MediumInfo = _dataService.GetMedium(SelectedMedium)
             };
             _dataService.AddItem(item);

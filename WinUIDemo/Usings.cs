@@ -33,3 +33,4 @@ global using WinUIDemo.Services;
 global using WinUIDemo.ViewModels;
 global using WinUIDemo.Views;
 global using WinUIEx;
+global using ZiggyCreatures.Caching.Fusion;

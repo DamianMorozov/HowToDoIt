@@ -8,7 +8,6 @@ public sealed partial class ShellViewModel : ObservableRecipient
     public partial object? Selected { get; set; }
 
     public INavigationService NavigationService { get; }
-
     public INavigationViewService NavigationViewService { get; }
 
     public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService)

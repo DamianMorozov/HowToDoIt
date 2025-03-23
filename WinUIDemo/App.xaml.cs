@@ -43,8 +43,6 @@ public sealed partial class App : Application
             // Views and ViewModels
             services.AddTransient<ShellViewModel>();
             services.AddTransient<ShellPage>();
-            services.AddTransient<MediaItemViewModel>();
-            services.AddTransient<MediaItemPage>();
             services.AddTransient<MediaViewModel>();
             services.AddTransient<MediaPage>();
             services.AddTransient<CameraPreviewViewModel>();
@@ -53,6 +51,16 @@ public sealed partial class App : Application
             services.AddTransient<SettingsPage>();
             services.AddTransient<ItemDetailsViewModel>();
             services.AddTransient<ItemDetailsPage>();
+            services.AddTransient<FusionCacheViewModel>();
+            services.AddTransient<FusionCachePage>();
+            // DI
+            services.AddFusionCache()
+                .WithDefaultEntryOptions(new FusionCacheEntryOptions {
+                    Duration = TimeSpan.FromSeconds(10),
+                    IsFailSafeEnabled = true,
+                    FailSafeThrottleDuration = TimeSpan.FromSeconds(5),
+                    FailSafeMaxDuration = TimeSpan.FromMinutes(1),
+                });
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
         }).

@@ -132,6 +132,9 @@
   <data name="Shell_MediaCapture.Content" xml:space="preserve">
     <value>Camera capture</value>
   </data>
+  <data name="Shell_FusionCache.Content" xml:space="preserve">
+    <value>Fusion cache</value>
+  </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalization</value>
   </data>
@@ -178,5 +181,8 @@
   </data>
   <data name="DeleteButton.Content" xml:space="preserve">
     <value>Delete item</value>
+  </data>
+  <data name="ResetButton.Content" xml:space="preserve">
+    <value>Reset</value>
   </data>
 </root>
