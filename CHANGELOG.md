@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.010] - 2025-03-24
+### Changed
+- Added FusionCache in WinUIDemo
+
 ## [0.1.560] - 2024-10-19
 ### Changed
 - NuGet packages
