@@ -182,6 +182,9 @@
   <data name="DeleteButton.Content" xml:space="preserve">
     <value>Delete item</value>
   </data>
+  <data name="GetButton.Content" xml:space="preserve">
+    <value>Get</value>
+  </data>
   <data name="ResetButton.Content" xml:space="preserve">
     <value>Reset</value>
   </data>

@@ -55,12 +55,7 @@ public sealed partial class App : Application
             services.AddTransient<FusionCachePage>();
             // DI
             services.AddFusionCache()
-                .WithDefaultEntryOptions(new FusionCacheEntryOptions {
-                    Duration = TimeSpan.FromSeconds(10),
-                    IsFailSafeEnabled = true,
-                    FailSafeThrottleDuration = TimeSpan.FromSeconds(5),
-                    FailSafeMaxDuration = TimeSpan.FromMinutes(1),
-                });
+                .WithDefaultEntryOptions(FusionCacheExtensions.GetFusionCacheEntryOptions());
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
         }).

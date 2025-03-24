@@ -13,6 +13,7 @@ global using Microsoft.Windows.ApplicationModel.Resources;
 global using Microsoft.Windows.AppLifecycle;
 global using System.Collections.ObjectModel;
 global using System.Diagnostics.CodeAnalysis;
+global using System.Diagnostics;
 global using System.Reflection;
 global using System.Windows.Input;
 global using Windows.ApplicationModel;
