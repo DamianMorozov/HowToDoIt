@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.030] - 2025-08-16
+### Added
+- Added `RabbitMQDemo` project
+
 ## [0.2.020] - 2025-08-14
 ### Removed
 - Deleted CopilotDemo project
