@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated NuGet packages
 - .NET version updated to 10
 - Updated GitHub Actions
+### Added
+- Added GitHub Actions for building and publishing the project
 
 ## [0.2.050] - 2025-08-16
 ### Added
