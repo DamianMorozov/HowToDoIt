@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>disable</ImplicitUsings>
-		<Version>0.2.50.0</Version>
+		<Version>0.2.100.0</Version>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="GuerrillaNtp" Version="3.1.0" />
