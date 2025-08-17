@@ -7,7 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<Deterministic>true</Deterministic>
     <LangVersion>latest</LangVersion>
-    <Version>0.2.100.0</Version>
+    <Version>0.2.110.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Properties\**" />
