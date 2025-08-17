@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Net.WebSockets;
+using System.Text;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,75 +19,87 @@ app.Map("/ws", async context =>
         return;
     }
 
-    using var socket = await context.WebSockets.AcceptWebSocketAsync();
+    var socket = await context.WebSockets.AcceptWebSocketAsync();
     var clientId = Guid.NewGuid();
     clients.TryAdd(clientId, socket);
     Console.WriteLine($"Client connected: {clientId}");
 
     try
     {
-        // 1. Streaming Text Protocol
-        using var textStream = WebSocketStream.Create(socket, WebSocketMessageType.Text, ownsWebSocket: false);
-        using var reader = new StreamReader(textStream, leaveOpen: true);
-        var line = await reader.ReadLineAsync();
-        Console.WriteLine($"[Text] {line}");
-
-        // 2. Streaming Binary Protocol
-        var binaryBuffer = new byte[4];
-        await textStream.ReadExactlyAsync(binaryBuffer);
-        Console.WriteLine($"[Binary] {BitConverter.ToString(binaryBuffer)}");
-
-        // 3. Read Single Message (JSON)
-        using var jsonStream = WebSocketStream.CreateReadableMessageStream(socket);
-        var msg = await JsonSerializer.DeserializeAsync<AppMessage>(jsonStream);
-        Console.WriteLine($"[JSON] {msg?.Text}");
-
-        // Broadcast JSON to all clients
-        foreach (var kvp in clients)
+        // Read messages in a stream, one after another, while the socket is open
+        while (socket.State == WebSocketState.Open)
         {
-            if (kvp.Value.State == WebSocketState.Open)
+            if (args.Contains("-text") || args.Length == 0)
             {
-                using var broadcastStream = WebSocketStream.CreateWritableMessageStream(kvp.Value, WebSocketMessageType.Text);
-                await JsonSerializer.SerializeAsync(broadcastStream, new AppMessage { Text = $"Echo from {clientId}: {msg?.Text}" });
+                await ReceiveTextMessageAsync(socket);
+            }
+            if (args.Contains("-binary"))
+            {
+                await ReceiveBinaryAsync(socket);
             }
         }
-
-        // 4. Write Single Message (Binary)
-        using var writeStream = WebSocketStream.CreateWritableMessageStream(socket, WebSocketMessageType.Binary);
-        await writeStream.WriteAsync(new byte[] { 0xDE, 0xAD, 0xBE, 0xEF });
     }
-    catch (Exception ex)
+    catch (WebSocketException wex)
     {
-        Console.WriteLine($"Error with client {clientId}: {ex.Message}");
+        Console.WriteLine($"WebSocket error: {wex.Message}");
+    }
+    catch (OperationCanceledException)
+    {
+        Console.WriteLine("Operation canceled.");
     }
     finally
     {
-        Console.WriteLine($"[State] WebSocket state before cleanup: {socket.State}");
-        clients.TryRemove(clientId, out _);
-        if (socket.State == WebSocketState.Open ||
-            socket.State == WebSocketState.CloseReceived ||
-            socket.State == WebSocketState.CloseSent)
+        if (socket.State is WebSocketState.Open or WebSocketState.CloseReceived)
         {
             try
             {
-                Console.WriteLine("[Action] Attempting CloseAsync...");
-                await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", CancellationToken.None);
-                Console.WriteLine("[Success] CloseAsync completed.");
+                await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Server closing", CancellationToken.None);
+                Console.WriteLine("Server closed gracefully.");
             }
-            catch (WebSocketException ex)
+            catch (WebSocketException wex)
             {
-                Console.WriteLine($"[Error] CloseAsync failed: {ex.Message}");
+                Console.WriteLine($"CloseAsync error: {wex.Message}");
             }
         }
-        else
-        {
-            Console.WriteLine("[Skip] CloseAsync skipped due to invalid state.");
-        }
-        Console.WriteLine($"Client disconnected: {clientId}");
+        Console.WriteLine("Client disconnected.");
     }
 });
 
 await app.RunAsync();
+
+static async Task ReceiveTextMessageAsync(WebSocket socket)
+{
+    // Reading the incoming message in its entirety
+    using var readStream = WebSocketStream.CreateReadableMessageStream(socket);
+    using var reader = new StreamReader(readStream, new UTF8Encoding(false), detectEncodingFromByteOrderMarks: false, bufferSize: 1024, leaveOpen: false);
+
+    // ReadToEndAsync waits for EndOfMessage
+    var text = await reader.ReadToEndAsync();
+    // Trim last EOL
+    text = text.TrimEnd('\r').TrimEnd('\n');
+    if (string.IsNullOrEmpty(text)) return;
+    // If the client sent an empty string, continue the cycle
+    Console.Write("[Receive] ");
+    Console.WriteLine(text);
+
+    // Send the response and correctly terminate the message with Dispose.
+    using var writeStream = WebSocketStream.CreateWritableMessageStream(socket, WebSocketMessageType.Text);
+    using var writer = new StreamWriter(writeStream, new UTF8Encoding(false)) { AutoFlush = true };
+    await writer.WriteAsync($"Echo: {text}");
+    // writer.Dispose() => completes the frame with EndOfMessage = true
+}
+
+static async Task ReceiveBinaryAsync(WebSocket socket)
+{
+    using var binaryStream = WebSocketStream.CreateReadableMessageStream(socket);
+    var binaryBuffer = new byte[4];
+    await binaryStream.ReadExactlyAsync(binaryBuffer);
+    Console.WriteLine($"[Binary] {BitConverter.ToString(binaryBuffer)}");
+
+    // Reply with a binary message
+    using var writeStream = WebSocketStream.CreateWritableMessageStream(socket, WebSocketMessageType.Binary);
+    await writeStream.WriteAsync(new byte[] { 0xDE, 0xAD, 0xBE, 0xEF });
+}
 
 public class AppMessage
 {
