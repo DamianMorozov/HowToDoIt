@@ -1,0 +1,69 @@
+name: Build Windows application
+
+on:
+  workflow_call:
+    inputs:
+      target:
+        required: true
+        type: string
+
+jobs:
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore WsServer
+        run: dotnet restore WsServer/WsServer.csproj
+      - name: Build WsServer
+        run: dotnet publish WsServer/WsServer.csproj -c Release -o publish/WsServer /p:DebugType=none /p:DebugSymbols=false
+      - name: Archive WsServer
+        run: Compress-Archive -Path publish/* -DestinationPath WsServer.zip
+      - name: Upload WsServer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WsServer
+          path: WsServer.zip
+
+      - name: Restore WsClient
+        run: dotnet restore WsClient/WsClient.csproj
+      - name: Build WsClient
+        run: dotnet publish WsClient/WsClient.csproj -c Release -o publish/WsClient /p:DebugType=none /p:DebugSymbols=false
+      - name: Archive WsClient
+        run: Compress-Archive -Path publish/* -DestinationPath WsClient.zip
+      - name: Upload WsClient artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WsClient
+          path: WsClient.zip
+
+      - name: Restore WebSocketStreamServer
+        run: dotnet restore WebSocketStreamServer/WebSocketStreamServer.csproj
+      - name: Build WebSocketStreamServer
+        run: dotnet publish WebSocketStreamServer/WebSocketStreamServer.csproj -c Release -o publish/WebSocketStreamServer /p:DebugType=none /p:DebugSymbols=false
+      - name: Archive WebSocketStreamServer
+        run: Compress-Archive -Path publish/* -DestinationPath WebSocketStreamServer.zip
+      - name: Upload WebSocketStreamServer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WebSocketStreamServer
+          path: WebSocketStreamServer.zip
+
+      - name: Restore WebSocketStreamClient
+        run: dotnet restore WebSocketStreamClient/WebSocketStreamClient.csproj
+      - name: Build WebSocketStreamClient
+        run: dotnet publish WebSocketStreamClient/WebSocketStreamClient.csproj -c Release -o publish/WebSocketStreamClient /p:DebugType=none /p:DebugSymbols=false
+      - name: Archive WebSocketStreamClient
+        run: Compress-Archive -Path publish/* -DestinationPath WebSocketStreamClient.zip
+      - name: Upload WebSocketStreamClient artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WebSocketStreamClient
+          path: WebSocketStreamClient.zip
