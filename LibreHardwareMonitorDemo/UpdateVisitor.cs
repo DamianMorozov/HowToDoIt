@@ -3,7 +3,7 @@
 
 namespace LibreHardwareMonitorDemo;
 
-public class UpdateVisitor : IVisitor
+public sealed class UpdateVisitor : IVisitor
 {
 	public void VisitComputer(IComputer computer)
 	{
