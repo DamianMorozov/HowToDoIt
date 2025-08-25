@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Schick.Keycloak.RestApiClient" Version="26.0.0" />
+    <PackageReference Include="Schick.Keycloak.RestApiClient" Version="26.2.0" />
   </ItemGroup>
 
 </Project>
