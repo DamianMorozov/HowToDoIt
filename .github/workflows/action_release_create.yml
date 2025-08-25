@@ -36,26 +36,43 @@ jobs:
             awk '/^## \[/{i++} i==1{print}' CHANGELOG.md | tail -n +2
             echo 'EOF'
           } >> "$GITHUB_OUTPUT"
+
       - name: Download WsServer artifact
         uses: actions/download-artifact@v4
         with:
           name: WsServer
           path: ./artifacts
+
       - name: Download WsClient artifact
         uses: actions/download-artifact@v4
         with:
           name: WsClient
           path: ./artifacts
+
       - name: Download WebSocketStreamServer artifact
         uses: actions/download-artifact@v4
         with:
           name: WebSocketStreamServer
           path: ./artifacts
+
       - name: Download WebSocketStreamClient artifact
         uses: actions/download-artifact@v4
         with:
           name: WebSocketStreamClient
           path: ./artifacts
+
+      - name: Download LibreHardwareMonitorDemo artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: LibreHardwareMonitorDemo
+          path: ./artifacts
+
+      - name: Download RabbitMQDemo artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: RabbitMQDemo
+          path: ./artifacts
+
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -75,22 +92,21 @@ jobs:
       - name: Exit if tag already exists
         if: steps.check_tag.outputs.exists == 'true'
         run: echo "Tag already exists. Exiting..."
+
       - name: Create annotated Git tag
         if: steps.check_tag.outputs.exists == 'false'
         run: |
-            git tag -a "${{ steps.get_version.outputs.version }}" -m "$(cat <<EOF
-            ${{ steps.get_body.outputs.body }}
-            EOF
-              )"
-              git push origin "${{ steps.get_version.outputs.version }}"
+            echo "${{ steps.get_body.outputs.body }}" > release_notes.txt
+            git tag -a "${{ steps.get_version.outputs.version }}" -F release_notes.txt
             git push origin "${{ steps.get_version.outputs.version }}"
+
       - name: Create GitHub Release
         if: steps.check_tag.outputs.exists == 'false'
         run: |
             gh auth setup-git
             gh release create ${{ steps.get_version.outputs.version }} ./artifacts/* \
             --title "Release ${{ steps.get_version.outputs.version }}" \
-            --notes "${{ steps.get_body.outputs.body }}" \
+            --notes-file release_notes.txt \
             --prerelease
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -67,3 +67,27 @@ jobs:
         with:
           name: WebSocketStreamClient
           path: WebSocketStreamClient.zip
+
+      - name: Restore LibreHardwareMonitorDemo
+        run: dotnet restore LibreHardwareMonitorDemo/LibreHardwareMonitorDemo.csproj
+      - name: Build LibreHardwareMonitorDemo
+        run: dotnet publish LibreHardwareMonitorDemo/LibreHardwareMonitorDemo.csproj -c Release -o publish/LibreHardwareMonitorDemo /p:DebugType=none /p:DebugSymbols=false
+      - name: Archive LibreHardwareMonitorDemo
+        run: Compress-Archive -Path publish/* -DestinationPath LibreHardwareMonitorDemo.zip
+      - name: Upload LibreHardwareMonitorDemo artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LibreHardwareMonitorDemo
+          path: LibreHardwareMonitorDemo.zip
+
+      - name: Restore RabbitMQDemo
+        run: dotnet restore RabbitMQDemo/RabbitMQDemo.csproj
+      - name: Build RabbitMQDemo
+        run: dotnet publish RabbitMQDemo/RabbitMQDemo.csproj -c Release -o publish/RabbitMQDemo /p:DebugType=none /p:DebugSymbols=false
+      - name: Archive RabbitMQDemo
+        run: Compress-Archive -Path publish/* -DestinationPath RabbitMQDemo.zip
+      - name: Upload RabbitMQDemo artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RabbitMQDemo
+          path: RabbitMQDemo.zip
