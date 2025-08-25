@@ -1,6 +1,6 @@
 ﻿Console.WriteLine("RabbitMQ Demo");
 
-Console.WriteLine("Press 's' to send a message, 'r' to receive messages, or any other key to exit.");
+var queueName = "taskQueue";
 var menu = string.Empty;
 while (menu != "Exit")
 {
@@ -12,12 +12,11 @@ while (menu != "Exit")
     {
         case "Send message":
             Console.WriteLine("You selected to send a message.");
-            var message = Console.ReadLine() ?? string.Empty;
-            await RaProducer.SendMessageAsync(message, "demoQueue");
+            await RaProducer.SendMessageAsync(queueName);
             break;
         case "Receive messages":
             Console.WriteLine("You selected to receive messages.");
-            await RaConsumer.ReceiveMessagesAsync("demoQueue");
+            await RaConsumer.ReceiveMessagesAsync(queueName);
             break;
         case "Exit":
             Console.WriteLine("Exiting RabbitMQ Demo.");

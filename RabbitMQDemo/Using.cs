@@ -3,3 +3,4 @@ global using RabbitMQ.Client;
 global using RabbitMQDemo;
 global using Spectre.Console;
 global using System.Text;
+global using System.Threading.Tasks;

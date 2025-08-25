@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.140] - 2025-08-25
 ### Changed
 - Updated NuGet packages
+- Updated `RabbitMQDemo` project
 
 ## [0.2.130] - 2025-08-17
 ### Changed
